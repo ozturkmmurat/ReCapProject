@@ -1,4 +1,7 @@
 ﻿using Business.Abstract;
+using Business.Constans;
+using Core.Utilities.Result.Abstract;
+using Core.Utilities.Result.Concrete;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
@@ -16,34 +19,44 @@ namespace Business.Concrete
             _colorDal = colorDal;
         }
 
-        public void Add(Color color)
+        public IResult Add(Color color)
         {
             _colorDal.Add(color);
+            return new  SuccessResult(Messages.DataAdded);
         }
 
-        public void Delete(Color color)
+
+        public IResult Delete(Color color)
         {
             _colorDal.Delete(color);
+            return new SuccessResult(Messages.DataDeleted);
         }
 
-        public List<Color> GetAll()
+        public  IDataResult<List<Color>> GetAll()
         {
-            return _colorDal.GetAll();
+            return new SuccessDataResult<List<Color>>(_colorDal.GetAll(), Messages.GetByAll);
         }
 
-        public Color GetById(int id)
+        public IDataResult<Color> GetById(int id)
         {
-            return _colorDal.GetById(c=> c.Id == c.Id);
+            var result = _colorDal.GetById(c => c.Id == c.Id);
+            if(result != null)
+            {
+                return new SuccessDataResult<Color>(result, "Veri başarıyla bulundu");
+            }
+            return new ErrorDataResult<Color>(result, Messages.GetByIdMessage);
+            
         }
 
-        public List<Color> GetByName(string name)
+        public IDataResult<List<Color>> GetByName(string name)
         {
-            return _colorDal.GetAll(c => c.Name == name);
+            return new SuccessDataResult<List<Color>>(_colorDal.GetAll(c => c.Name == name), Messages.GetByAll);
         }
 
-        public void Update(Color color)
+        public IResult Update(Color color)
         {
             _colorDal.Update(color);
+            return new SuccessResult(Messages.DataUpdate);
         }
     }
 }

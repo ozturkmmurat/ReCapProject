@@ -33,13 +33,20 @@ namespace ConsoleUI
             //    Console.WriteLine(item.Name);
             //}
 
-            CarManager carManager = new CarManager(new EfCarDal());
-            foreach (var item in carManager.GetCarsDetailDTO())
-            {
-                Console.WriteLine("Araç Adı = " + item.CarName + " -- Araç Markası = "
-                    + item.BrandName + " -- Araç Rengi = " + item.ColorName +
-                    " -- Araç Günlük Ücreti = " + item.DailyPrice);
-            }
+            //CarManager carManager = new CarManager(new EfCarDal());
+            //foreach (var item in carManager.GetCarsDetailDTO().Data)
+            //{
+            //    Console.WriteLine("Araç Adı = " + item.CarName + " -- Araç Markası = "
+            //        + item.BrandName + " -- Araç Rengi = " + item.ColorName +
+            //        " -- Araç Günlük Ücreti = " + item.DailyPrice);
+            //}
+
+            UserManager user = new UserManager(new EfUserDal());
+            var result =  user.Add(new User 
+            { FirstName = "Murat", LastName = "Öztürk", Email = "murat.oztrkk01@gmail.com", Password = " 123456 " });
+
+            Console.WriteLine(result.Message);
+
         }
 
         private static void ColorDelete()
