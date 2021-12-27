@@ -1,6 +1,7 @@
 ﻿using Business.Abstract;
 using Business.Constans;
 using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
 using Core.CrossCuttingConcers.Validation;
 using Core.Utilities.Result.Abstract;
 using Core.Utilities.Result.Concrete;
@@ -13,6 +14,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using static Core.Aspects.Autofac.Validation.ValidationAspect;
 
 namespace Business.Concrete
 {
@@ -23,14 +25,14 @@ namespace Business.Concrete
         {
             _carDal = carDal;
         }
-
+        [ValidationAspect(typeof(CarValidator))]
         public IResult Add(Car car)
         {
             //var context = new ValidationContext<Car>(car); // Bir doğrulama contexti oluşturduk
             //CarValidator carValidator = new CarValidator();  
             //var result = carValidator.Validate(context); // CarValidator classındaki kurallara uyuyor mu context kontrol et
 
-            ValidationTool.Validate(new CarValidator(), car);  // Üstteki 3 satır kodun yaptığı işlemi Core katmanında 
+           /* ValidationTool.Validate(new CarValidator(), car); */ // Üstteki 3 satır kodun yaptığı işlemi Core katmanında 
             // CrossCutingConcers bölümünde gerçekleştirdik
                 _carDal.Add(car);
                 return new SuccessResult(Messages.DataAdded);
@@ -42,7 +44,6 @@ namespace Business.Concrete
             _carDal.Delete(car);
             return new SuccessResult(Messages.DataDeleted);
         }
-
         public IDataResult<List<Car>> GetAllCars()
         {
 
@@ -73,7 +74,7 @@ namespace Business.Concrete
         {
            return new SuccessDataResult<List<CarDetailDTO>>(_carDal.GetCarDetails(), Messages.GetByAll);
         }
-
+        [ValidationAspect(typeof(CarValidator))]
         public IResult Update(Car car)
         {
            
