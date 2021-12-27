@@ -1,11 +1,14 @@
 ﻿using Business.Abstract;
 using Business.Constans;
+using Business.ValidationRules.FluentValidation;
+using Core.CrossCuttingConcers.Validation;
 using Core.Utilities.Result.Abstract;
 using Core.Utilities.Result.Concrete;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
 using Entities.DTOs;
+using FluentValidation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,20 +25,16 @@ namespace Business.Concrete
         }
 
         public IResult Add(Car car)
-        {    
-           if (car.Description.Length <= 2)
-                {
-                return new ErrorResult(Messages.DataRuleFail);
-                }
-          else if (car.DailyPrice <= 0)
-                {
-                return new ErrorResult(Messages.DataRuleFail);
-            }
-            else
-            {
+        {
+            //var context = new ValidationContext<Car>(car); // Bir doğrulama contexti oluşturduk
+            //CarValidator carValidator = new CarValidator();  
+            //var result = carValidator.Validate(context); // CarValidator classındaki kurallara uyuyor mu context kontrol et
+
+            ValidationTool.Validate(new CarValidator(), car);  // Üstteki 3 satır kodun yaptığı işlemi Core katmanında 
+            // CrossCutingConcers bölümünde gerçekleştirdik
                 _carDal.Add(car);
                 return new SuccessResult(Messages.DataAdded);
-            }
+
         }
 
         public IResult Delete(Car car)
