@@ -13,5 +13,6 @@ namespace Business.Constans
         public static string DataDeleted = " Veri başarıyla silindi";
         public static string DataUpdate = " Veri başarıyla güncellendi";
         public static string DataRuleFail = " Veri belirtilen kurallara uymuyor";
+        public static string CheckIfCarImageLimit = "Bir araç için 5'den fazla resim yükleyemezsiniz";
     }
 }
