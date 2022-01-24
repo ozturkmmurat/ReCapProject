@@ -33,7 +33,7 @@ namespace Business.Concrete
                 return new ErrorResult();
             }
             carImages.ImagePath = _fileHelper.Upload(file, PathConstans.ImagesPath);
-            //carImages.Date = DateTime.Now;
+            carImages.CreateDate = DateTime.Now;
             _carsImages.Add(carImages);
             return new SuccessResult(Messages.DataAdded);
         }
@@ -52,7 +52,7 @@ namespace Business.Concrete
 
         public IDataResult<CarImages> GetById(int id)
         {
-            var result = _carsImages.GetById(c => c.Id == id);
+            var result = _carsImages.Get(c => c.Id == id);
             if(result != null)
             {
                 return new SuccessDataResult<CarImages>(result, Messages.GetByIdMessage);

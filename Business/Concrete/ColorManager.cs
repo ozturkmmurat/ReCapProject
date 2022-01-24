@@ -41,7 +41,7 @@ namespace Business.Concrete
 
         public IDataResult<Color> GetById(int id)
         {
-            var result = _colorDal.GetById(c => c.Id == id);
+            var result = _colorDal.Get(c => c.Id == id);
             if(result != null)
             {
                 return new SuccessDataResult<Color>(result, "Veri başarıyla bulundu");

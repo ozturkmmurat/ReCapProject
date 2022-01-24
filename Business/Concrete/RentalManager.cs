@@ -39,7 +39,7 @@ namespace Business.Concrete
 
         public IDataResult<Rental> GetById(int id)
         {
-            var result = _rentalDal.GetById(c => c.Id == id);
+            var result = _rentalDal.Get(c => c.Id == id);
             if (result != null)
             {
                 return new SuccessDataResult<Rental>(result, Messages.GetByIdMessage);

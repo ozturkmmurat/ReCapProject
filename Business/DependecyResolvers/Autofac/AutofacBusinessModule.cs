@@ -4,6 +4,7 @@ using Business.Abstract;
 using Business.Concrete;
 using Castle.DynamicProxy;
 using Core.Helpers.FileHelper;
+using Core.Utilities.Security.JWT;
 using Core.Utilities.Helpers;
 using Core.Utilities.Interceptors;
 using DataAccess.Abstract;
@@ -12,6 +13,7 @@ using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Microsoft.AspNetCore.Http;
 
 namespace Business.DependecyResolvers.Autofac
 {
@@ -40,6 +42,9 @@ namespace Business.DependecyResolvers.Autofac
             builder.RegisterType<CarImagesManager>().As<ICarImagesService>().SingleInstance();
             builder.RegisterType<EfCarImagesDal>().As<ICarImagesDal>().SingleInstance();
             builder.RegisterType<FileHelperManager>().As<IFileHelper>().SingleInstance();
+
+            builder.RegisterType<AuthManager>().As<IAuthService>();
+            builder.RegisterType<JwtHelper>().As<ITokenHelper>();
 
             // Atribute var mı yok mu onu kontrol et diyoruz 
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();
