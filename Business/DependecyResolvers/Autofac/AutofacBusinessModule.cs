@@ -14,6 +14,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Business.DependecyResolvers.Autofac
 {
@@ -54,6 +55,7 @@ namespace Business.DependecyResolvers.Autofac
                 {
                     Selector = new AspectInterceptorSelector()
                 }).SingleInstance();
+
         }
     }
 }

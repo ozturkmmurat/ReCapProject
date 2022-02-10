@@ -2,6 +2,8 @@
 using Business.BusinessAspects.Autofac;
 using Business.Constans;
 using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Caching;
+using Core.Aspects.Autofac.Transaction;
 using Core.Aspects.Autofac.Validation;
 using Core.CrossCuttingConcers.Validation;
 using Core.Utilities.Result.Abstract;
@@ -26,8 +28,10 @@ namespace Business.Concrete
         {
             _carDal = carDal;
         }
-        [SecuredOperation("product.add,admin")]
+        [SecuredOperation("caradd,admin")]
         [ValidationAspect(typeof(CarValidator))]
+        [TransactionScopeAspect]
+        [CacheRemoveAspect("ICarService.Get")]
         public IResult Add(Car car)
         {
             //var context = new ValidationContext<Car>(car); // Bir doğrulama contexti oluşturduk
@@ -40,18 +44,19 @@ namespace Business.Concrete
                 return new SuccessResult(Messages.DataAdded);
 
         }
-
+        [CacheRemoveAspect("ICarService.Get")]
         public IResult Delete(Car car)
         {
             _carDal.Delete(car);
             return new SuccessResult(Messages.DataDeleted);
         }
+        [CacheAspect]
         public IDataResult<List<Car>> GetAllCars()
         {
 
             return  new SuccessDataResult<List<Car>>(_carDal.GetAll(), Messages.GetByAll);
         }
-
+        [CacheAspect]
         public IDataResult<Car> GetById(int id)
         {
             var result = _carDal.Get(c => c.Id == id);
@@ -61,22 +66,23 @@ namespace Business.Concrete
             }
             return new ErrorDataResult<Car>(Messages.GetByAllDefault);
         }
-
+        [CacheAspect]
         public IDataResult<List<Car>> GetCarsByBrandId(int id)
         {
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.BrandId == id), Messages.GetByAll);
         }
-
+        [CacheAspect]
         public IDataResult<List<Car>> GetCarsByColorId(int id)
         {
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.ColorId == id), Messages.GetByAll);
         }
-
+        [CacheAspect]
         public IDataResult<List<CarDetailDTO>> GetCarsDetailDTO()
         {
            return new SuccessDataResult<List<CarDetailDTO>>(_carDal.GetCarDetails(), Messages.GetByAll);
         }
         [ValidationAspect(typeof(CarValidator))]
+        [CacheRemoveAspect("ICarService.Get")]
         public IResult Update(Car car)
         {
            
@@ -84,6 +90,5 @@ namespace Business.Concrete
             return new SuccessResult(Messages.DataUpdate);
         }
 
-       
     }
 }
