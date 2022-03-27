@@ -17,5 +17,6 @@ namespace Business.Constans
         public static string CheckIfCarImageLimit = "Bir araç için 5'den fazla resim yükleyemezsiniz";
         public static string GetByClaim = "Kullanıcının yetkileri listelendi";
         public static string AuthorizationDenied = "Yetkiniz yok.";
+        public static string GetRentalDetailsDto = "Kira detayları listelendi";
     }
 }
