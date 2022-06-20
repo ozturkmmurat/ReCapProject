@@ -24,13 +24,40 @@ namespace DataAccess.Concrete.EntityFramework
                              on c.ColorId equals cl.Id
                              select new CarDetailDTO
                              {
+                                 CarId = c.Id,
                                  CarName = c.Description,
                                  BrandName = b.Name,
                                  ColorName = cl.Name,
                                  DailyPrice = c.DailyPrice
                              };
                 return result.ToList();
-                             
+
+            }
+        }
+
+        public CarDetailDTO GetCarIdDetails(Expression<Func<Car, bool>> filter)
+        {
+            using (ReCapProjectContext context = new ReCapProjectContext())
+            {
+                var result = from c in filter == null ? context.Cars : context.Cars.Where(filter)
+                             join cl in context.Colors
+                             on c.ColorId equals cl.Id
+                             join b in context.Brands
+                             on c.BrandId equals b.Id
+                             join img in context.CarImages
+                             on c.Id equals img.CarId
+
+                             select new CarDetailDTO
+                             {
+                                 CarId = c.Id,
+                                 CarName = c.Description,
+                                 BrandName = b.Name,
+                                 ColorName = cl.Name,
+                                 DailyPrice = c.DailyPrice,
+                                 ImagePath = img.ImagePath
+
+                             };
+                return result.FirstOrDefault();
             }
         }
     }

@@ -81,6 +81,20 @@ namespace Business.Concrete
         {
            return new SuccessDataResult<List<CarDetailDTO>>(_carDal.GetCarDetails(), Messages.GetByAll);
         }
+
+        public IDataResult<CarDetailDTO> GetCarsIdDetailDTO(int id)
+        {
+            var result = _carDal.GetCarIdDetails(c => c.Id == id);
+            if (result != null)
+            {
+                return new SuccessDataResult<CarDetailDTO>(result, Messages.GetByAll);
+            }
+            else
+            {
+                return new ErrorDataResult<CarDetailDTO>(Messages.GetByAllDefault);
+            }
+        }
+
         [ValidationAspect(typeof(CarValidator))]
         [CacheRemoveAspect("ICarService.Get")]
         public IResult Update(Car car)
