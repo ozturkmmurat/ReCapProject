@@ -65,6 +65,17 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
+        [HttpGet("GetByBrandNameByColorNameCarsDetailDTO")]
+        public IActionResult GetByBrandNameByColorNameCarsDetailDTO(string brandName, string colorName)
+        {
+            var result = _carService.GetByBrandNameByColorNameCarDetails(brandName, colorName);
+
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
         [HttpGet("GetCarsIdDetailDTO")]
         public IActionResult GetCarsIdDetailDTO(int id)
         {

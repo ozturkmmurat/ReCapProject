@@ -81,7 +81,18 @@ namespace Business.Concrete
         {
            return new SuccessDataResult<List<CarDetailDTO>>(_carDal.GetCarDetails(), Messages.GetByAll);
         }
-
+        public IDataResult<List<CarDetailDTO>> GetByBrandNameByColorNameCarDetails(string brandName, string colorName)
+        {
+            if (brandName == null && colorName != null)
+            {
+                return new SuccessDataResult<List<CarDetailDTO>>(_carDal.GetByBrandNameByColorNameCarDetails(x => x.ColorName == colorName));
+            }
+            else if (colorName == null && brandName != null)
+            {
+                return new SuccessDataResult<List<CarDetailDTO>>(_carDal.GetByBrandNameByColorNameCarDetails(x => x.BrandName == brandName));
+            }
+            return new SuccessDataResult<List<CarDetailDTO>>(_carDal.GetByBrandNameByColorNameCarDetails(x => x.BrandName == brandName && x.ColorName == colorName));
+        }
         public IDataResult<CarDetailDTO> GetCarsIdDetailDTO(int id)
         {
             var result = _carDal.GetCarIdDetails(c => c.Id == id);
