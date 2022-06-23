@@ -83,11 +83,12 @@ namespace Business.Concrete
         }
         public IDataResult<List<CarDetailDTO>> GetByBrandNameByColorNameCarDetails(string brandName, string colorName)
         {
-            if (brandName == null && colorName != null)
+            
+            if (brandName == "undefined" && colorName != null)
             {
                 return new SuccessDataResult<List<CarDetailDTO>>(_carDal.GetByBrandNameByColorNameCarDetails(x => x.ColorName == colorName));
             }
-            else if (colorName == null && brandName != null)
+            else if (colorName == "undefined" && brandName != null)
             {
                 return new SuccessDataResult<List<CarDetailDTO>>(_carDal.GetByBrandNameByColorNameCarDetails(x => x.BrandName == brandName));
             }
@@ -95,7 +96,7 @@ namespace Business.Concrete
         }
         public IDataResult<CarDetailDTO> GetCarsIdDetailDTO(int id)
         {
-            var result = _carDal.GetCarIdDetails(c => c.Id == id);
+            var result = _carDal.GetCarIdDetails(c => c.CarId == id);
             if (result != null)
             {
                 return new SuccessDataResult<CarDetailDTO>(result, Messages.GetByAll);
@@ -115,5 +116,22 @@ namespace Business.Concrete
             return new SuccessResult(Messages.DataUpdate);
         }
 
+        public IDataResult<List<CarDetailDTO>> GetCarDetailsByBrandId(int brandId)
+        {
+            if (brandId !=0)
+            {
+                return new SuccessDataResult<List<CarDetailDTO>>(_carDal.GetCarsDetailsByBrandId(brandId));
+            }
+            return new ErrorDataResult<List<CarDetailDTO>>("Veriler listelenemedi.");
+        }
+
+        public IDataResult<List<CarDetailDTO>> GetCarDetailsByColorId(int colorId)
+        {
+            if (colorId != 0)
+            {
+                return new SuccessDataResult<List<CarDetailDTO>>(_carDal.GetCarsDetailsByColorId(colorId));
+            }
+            return new ErrorDataResult<List<CarDetailDTO>>("Veriler listelenemedi.");
+        }
     }
 }

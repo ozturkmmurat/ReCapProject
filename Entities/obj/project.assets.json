@@ -6805,11 +6805,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Murat Ozturk\\Desktop\\DENEME\\ReCapProject\\Entities\\Entities.csproj",
+      "projectUniqueName": "D:\\Murat Ozturk\\Desktop\\Projeler\\ReCapProject\\Entities\\Entities.csproj",
       "projectName": "Entities",
-      "projectPath": "D:\\Murat Ozturk\\Desktop\\DENEME\\ReCapProject\\Entities\\Entities.csproj",
+      "projectPath": "D:\\Murat Ozturk\\Desktop\\Projeler\\ReCapProject\\Entities\\Entities.csproj",
       "packagesPath": "C:\\Users\\murat.ozturk\\.nuget\\packages\\",
-      "outputPath": "D:\\Murat Ozturk\\Desktop\\DENEME\\ReCapProject\\Entities\\obj\\",
+      "outputPath": "D:\\Murat Ozturk\\Desktop\\Projeler\\ReCapProject\\Entities\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -6831,8 +6831,8 @@
         "netstandard2.0": {
           "targetAlias": "netstandard2.0",
           "projectReferences": {
-            "D:\\Murat Ozturk\\Desktop\\DENEME\\ReCapProject\\Core\\Core.csproj": {
-              "projectPath": "D:\\Murat Ozturk\\Desktop\\DENEME\\ReCapProject\\Core\\Core.csproj"
+            "D:\\Murat Ozturk\\Desktop\\Projeler\\ReCapProject\\Core\\Core.csproj": {
+              "projectPath": "D:\\Murat Ozturk\\Desktop\\Projeler\\ReCapProject\\Core\\Core.csproj"
             }
           }
         }

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "uYk6EBMMnnwynlila8ryPj0mpoZb6YqRszsqrnZaepveIawaLZZospko4AWvhzY4mr4xurrZY1kY5pDN44MrcA==",
+  "dgSpecHash": "Atr9eq8uamGt1pFsi7hV5mBEk1zpc+QdrH2sFFg8Be6TWEtmLP7ffxq/5EkVF3g+lSqUyC6D2W+U7Lm2bZUXYg==",
   "success": true,
-  "projectFilePath": "D:\\Murat Ozturk\\Desktop\\DENEME\\ReCapProject\\Core\\Core.csproj",
+  "projectFilePath": "D:\\Murat Ozturk\\Desktop\\Projeler\\ReCapProject\\Core\\Core.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\murat.ozturk\\.nuget\\packages\\autofac\\6.3.0\\autofac.6.3.0.nupkg.sha512",
     "C:\\Users\\murat.ozturk\\.nuget\\packages\\autofac.extensions.dependencyinjection\\7.2.0\\autofac.extensions.dependencyinjection.7.2.0.nupkg.sha512",

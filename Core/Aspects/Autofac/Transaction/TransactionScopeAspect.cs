@@ -18,7 +18,7 @@ namespace Core.Aspects.Autofac.Transaction
                     invocation.Proceed();  // Metodu çalıştırıyor burada businessdaki
                     transactionScope.Complete(); // İşlem başarılı
                 }
-                catch (System.Exception e)
+                catch (System.Exception)
                 {
                     transactionScope.Dispose(); // İşlem başarısız
                     throw;

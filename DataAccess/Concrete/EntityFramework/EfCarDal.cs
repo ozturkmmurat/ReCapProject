@@ -13,6 +13,32 @@ namespace DataAccess.Concrete.EntityFramework
 {
     public class EfCarDal : EfEntityRepositoryBase<Car, ReCapProjectContext>, ICarDal
     {
+        public List<CarDetailDTO> GetCarsDetailsByBrandId(int brandId)
+        {
+            using (ReCapProjectContext context = new ReCapProjectContext())
+            {
+                var result = from c in context.Cars
+                             join cl in context.Colors
+                             on c.ColorId equals cl.Id
+                             join b in context.Brands
+                             on c.BrandId equals b.Id
+                             join img in context.CarImages
+                             on c.Id equals img.CarId
+                             where b.Id == brandId
+                             select new CarDetailDTO
+                             {
+                                 CarId = c.Id,
+                                 CarName = c.Description,
+                                 BrandName = b.Name,
+                                 ColorName = cl.Name,
+                                 DailyPrice = c.DailyPrice,
+                                 ImagePath = img.ImagePath
+
+                             };
+                return result.ToList();
+            }
+        }
+
         public List<CarDetailDTO> GetByBrandNameByColorNameCarDetails(Expression<Func<CarDetailDTO, bool>> filter = null)
         {
 
@@ -60,18 +86,47 @@ namespace DataAccess.Concrete.EntityFramework
             }
         }
 
-        public CarDetailDTO GetCarIdDetails(Expression<Func<Car, bool>> filter)
+        public CarDetailDTO GetCarIdDetails(Expression<Func<CarDetailDTO, bool>> filter)
         {
             using (ReCapProjectContext context = new ReCapProjectContext())
             {
-                var result = from c in filter == null ? context.Cars : context.Cars.Where(filter)
+                var result = from c in context.Cars
                              join cl in context.Colors
                              on c.ColorId equals cl.Id
                              join b in context.Brands
                              on c.BrandId equals b.Id
                              join img in context.CarImages
                              on c.Id equals img.CarId
+                             join r in context.Rentals
+                             on c.Id equals r.CarId
+                             select new CarDetailDTO
+                             {
+                                 CarId = c.Id,
+                                 CarName = c.Description,
+                                 BrandName = b.Name,
+                                 ColorName = cl.Name,
+                                 DailyPrice = c.DailyPrice,
+                                 ImagePath = img.ImagePath,
+                                 RentDate = r.RentDate,
+                                 ReturnDate = r.ReturnDate,
+                                 
+                             };
+                return result.FirstOrDefault(filter);
+            }
+        }
 
+        public List<CarDetailDTO> GetCarsDetailsByColorId(int colorId)
+        {
+            using (ReCapProjectContext context = new ReCapProjectContext())
+            {
+                var result = from c in context.Cars
+                             join cl in context.Colors
+                             on c.ColorId equals cl.Id
+                             join b in context.Brands
+                             on c.BrandId equals b.Id
+                             join img in context.CarImages
+                             on c.Id equals img.CarId
+                             where cl.Id == colorId
                              select new CarDetailDTO
                              {
                                  CarId = c.Id,
@@ -82,7 +137,7 @@ namespace DataAccess.Concrete.EntityFramework
                                  ImagePath = img.ImagePath
 
                              };
-                return result.FirstOrDefault();
+                return result.ToList();
             }
         }
     }

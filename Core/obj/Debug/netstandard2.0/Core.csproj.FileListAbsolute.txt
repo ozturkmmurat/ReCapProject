@@ -8,3 +8,13 @@ D:\Murat Ozturk\Desktop\DENEME\ReCapProject\Core\obj\Debug\netstandard2.0\Core.A
 D:\Murat Ozturk\Desktop\DENEME\ReCapProject\Core\obj\Debug\netstandard2.0\Core.csproj.CoreCompileInputs.cache
 D:\Murat Ozturk\Desktop\DENEME\ReCapProject\Core\obj\Debug\netstandard2.0\Core.dll
 D:\Murat Ozturk\Desktop\DENEME\ReCapProject\Core\obj\Debug\netstandard2.0\Core.pdb
+D:\Murat Ozturk\Desktop\Projeler\ReCapProject\Core\bin\Debug\netstandard2.0\Core.deps.json
+D:\Murat Ozturk\Desktop\Projeler\ReCapProject\Core\bin\Debug\netstandard2.0\Core.dll
+D:\Murat Ozturk\Desktop\Projeler\ReCapProject\Core\bin\Debug\netstandard2.0\Core.pdb
+D:\Murat Ozturk\Desktop\Projeler\ReCapProject\Core\obj\Debug\netstandard2.0\Core.csproj.AssemblyReference.cache
+D:\Murat Ozturk\Desktop\Projeler\ReCapProject\Core\obj\Debug\netstandard2.0\Core.GeneratedMSBuildEditorConfig.editorconfig
+D:\Murat Ozturk\Desktop\Projeler\ReCapProject\Core\obj\Debug\netstandard2.0\Core.AssemblyInfoInputs.cache
+D:\Murat Ozturk\Desktop\Projeler\ReCapProject\Core\obj\Debug\netstandard2.0\Core.AssemblyInfo.cs
+D:\Murat Ozturk\Desktop\Projeler\ReCapProject\Core\obj\Debug\netstandard2.0\Core.csproj.CoreCompileInputs.cache
+D:\Murat Ozturk\Desktop\Projeler\ReCapProject\Core\obj\Debug\netstandard2.0\Core.dll
+D:\Murat Ozturk\Desktop\Projeler\ReCapProject\Core\obj\Debug\netstandard2.0\Core.pdb

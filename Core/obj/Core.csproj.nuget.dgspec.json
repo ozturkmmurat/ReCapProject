@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Murat Ozturk\\Desktop\\DENEME\\ReCapProject\\Core\\Core.csproj": {}
+    "D:\\Murat Ozturk\\Desktop\\Projeler\\ReCapProject\\Core\\Core.csproj": {}
   },
   "projects": {
-    "D:\\Murat Ozturk\\Desktop\\DENEME\\ReCapProject\\Core\\Core.csproj": {
+    "D:\\Murat Ozturk\\Desktop\\Projeler\\ReCapProject\\Core\\Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Murat Ozturk\\Desktop\\DENEME\\ReCapProject\\Core\\Core.csproj",
+        "projectUniqueName": "D:\\Murat Ozturk\\Desktop\\Projeler\\ReCapProject\\Core\\Core.csproj",
         "projectName": "Core",
-        "projectPath": "D:\\Murat Ozturk\\Desktop\\DENEME\\ReCapProject\\Core\\Core.csproj",
+        "projectPath": "D:\\Murat Ozturk\\Desktop\\Projeler\\ReCapProject\\Core\\Core.csproj",
         "packagesPath": "C:\\Users\\murat.ozturk\\.nuget\\packages\\",
-        "outputPath": "D:\\Murat Ozturk\\Desktop\\DENEME\\ReCapProject\\Core\\obj\\",
+        "outputPath": "D:\\Murat Ozturk\\Desktop\\Projeler\\ReCapProject\\Core\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",

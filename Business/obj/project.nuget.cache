@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "tYaZ4iePjQW4OQLDgcVxp1cBTk0WzFc/PdH6gnWvETYO7I9NsQEIl6wzo+WIgW6ugx4PD2VdfdopzR6z5pISfQ==",
+  "dgSpecHash": "VP6rSs2gfbwKx7O3AAr7UGpU4NQXoq26xm016GRYaK3O8qe5UITyWvEEJfEwyg+QkII8UyWAhMFbRQEBV/9EqQ==",
   "success": true,
-  "projectFilePath": "D:\\Murat Ozturk\\Desktop\\DENEME\\ReCapProject\\Business\\Business.csproj",
+  "projectFilePath": "D:\\Murat Ozturk\\Desktop\\Projeler\\ReCapProject\\Business\\Business.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\murat.ozturk\\.nuget\\packages\\autofac\\6.3.0\\autofac.6.3.0.nupkg.sha512",
     "C:\\Users\\murat.ozturk\\.nuget\\packages\\autofac.extensions.dependencyinjection\\7.2.0\\autofac.extensions.dependencyinjection.7.2.0.nupkg.sha512",
