@@ -2,6 +2,7 @@
 using Business.Constans;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
+using Core.Business;
 using Core.Utilities.Result.Abstract;
 using Core.Utilities.Result.Concrete;
 using DataAccess.Abstract;
@@ -9,6 +10,7 @@ using Entities.Concrete;
 using Entities.DTOs;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Business.Concrete
@@ -16,17 +18,28 @@ namespace Business.Concrete
     public class RentalManager : IRentalService
     {
         IRentalDal _rentalDal;
-        public RentalManager(IRentalDal rentalDal)
+        ICarService _carService;
+        ICreditCartService _creditCardService;
+        public RentalManager(IRentalDal rentalDal, ICarService carService, ICreditCartService creditCartService)
         {
             _rentalDal = rentalDal;
+            _carService = carService;
+            _creditCardService = creditCartService;
         }
-        [ValidationAspect(typeof(RentalValidator))]
         public IResult Add(Rental rental)
         {
-            _rentalDal.Add(rental);
-            return new SuccessResult(Messages.DataAdded);
-        }
+            var carAmount = _carService.GetById(rental.CarId).Data.DailyPrice;
 
+            IResult result = BusinessRules.Run(CheckIfCarRental(rental));
+            if (result != null)
+            {
+                TimeSpan ts = rental.ReturnDate - rental.RentDate;
+                _rentalDal.Add(rental);
+                return new SuccessResult(Messages.DataAdded);
+            }
+            var informationResult = _rentalDal.Get(x => x.CarId == rental.CarId).ReturnDate;
+            return new ErrorResult("Araç bu tarihe kadar kiralanmış " + informationResult);
+        }
         public IResult Delete(Rental rental)
         {
             _rentalDal.Delete(rental);
@@ -50,7 +63,7 @@ namespace Business.Concrete
 
         public IDataResult<List<RentalDetailsDto>> GetRentalDetailsDto()
         {
-            return new SuccessDataResult<List<RentalDetailsDto>>(_rentalDal.GetRentalDetails(),Messages.GetRentalDetailsDto);
+            return new SuccessDataResult<List<RentalDetailsDto>>(_rentalDal.GetRentalDetails(), Messages.GetRentalDetailsDto);
         }
 
         [ValidationAspect(typeof(RentalValidator))]
@@ -59,5 +72,15 @@ namespace Business.Concrete
             _rentalDal.Update(rental);
             return new SuccessResult(Messages.DataUpdate);
         }
+        public IResult CheckIfCarRental(Rental rental)
+        {
+            var result = _rentalDal.GetAll(r => r.CarId == rental.CarId && rental.RentDate >= DateTime.Now && rental.ReturnDate >= r.ReturnDate && rental.RentDate >= r.ReturnDate).Any();
+            if (result)
+            {
+                return new ErrorResult();
+            }
+            return new SuccessResult();
+        }
     }
+
 }
