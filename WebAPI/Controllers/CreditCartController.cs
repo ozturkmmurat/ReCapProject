@@ -21,9 +21,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("Add")]
-        public IActionResult Add(CreditCard creditCart)
+        public IActionResult Add(CreditCard creditCart,int amount)
         {
-            var result = _creditCartService.Payment(creditCart);
+            var result = _creditCartService.Payment(creditCart,amount);
 
             if (result.Success)
             {

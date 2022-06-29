@@ -54,9 +54,9 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
         [HttpPost("Add")]
-        public IActionResult Add(RentCarDto rental)
+        public IActionResult Add(RentCarDto rental, int amount)
         {
-            var result = _rentalService.Add(rental.Rental);
+            var result = _rentalService.Add(rental.Rental, rental.CreditCard,amount);
 
             if (result.Success)
             {

@@ -96,7 +96,7 @@ namespace Business.Concrete
         }
         public IDataResult<CarDetailDTO> GetCarsIdDetailDTO(int id)
         {
-            var result = _carDal.GetCarIdDetails(c => c.CarId == id);
+            var result = _carDal.GetCarIdDetails(c=> c.CarId == id);
             if (result != null)
             {
                 return new SuccessDataResult<CarDetailDTO>(result, Messages.GetByAll);

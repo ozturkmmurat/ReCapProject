@@ -97,8 +97,12 @@ namespace DataAccess.Concrete.EntityFramework
                              on c.BrandId equals b.Id
                              join img in context.CarImages
                              on c.Id equals img.CarId
+                             into colortemp
+                             from img in colortemp.DefaultIfEmpty()
                              join r in context.Rentals
                              on c.Id equals r.CarId
+                             into rentaltemp 
+                             from r in rentaltemp.DefaultIfEmpty()
                              select new CarDetailDTO
                              {
                                  CarId = c.Id,
@@ -109,6 +113,8 @@ namespace DataAccess.Concrete.EntityFramework
                                  ImagePath = img.ImagePath,
                                  RentDate = r.RentDate,
                                  ReturnDate = r.ReturnDate,
+                                 ColorId = cl.Id,
+                                 BrandId = b.Id
                                  
                              };
                 return result.FirstOrDefault(filter);
