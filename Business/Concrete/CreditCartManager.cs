@@ -16,12 +16,12 @@ namespace Business.Concrete
         {
             _creditCart = creditCart;
         }
-        public IResult Payment(CreditCard creditCart, int amount)
+        public IResult Payment(int amount)
         {
             var balance = new Random().Next(100, 6000);
-            if (amount <= balance)
+            if (balance >= amount)
             {
-                return new ErrorResult("Ödeme başarıyla gerçekleşti.");
+                return new SuccessResult("Ödeme başarıyla gerçekleşti.");
             }
             return new ErrorResult("Yetersiz bakiye");
         }

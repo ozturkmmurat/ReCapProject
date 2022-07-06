@@ -8,6 +8,6 @@ namespace Business.Abstract
 {
     public interface ICreditCartService
     {
-        IResult Payment(CreditCard creditCart, int amount);
+        IResult Payment(int amount);
     }
 }

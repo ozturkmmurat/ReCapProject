@@ -29,11 +29,11 @@ namespace Business.Concrete
         public IResult Add(Rental rental, CreditCard creditCard, int amount)
         {
             IResult result = BusinessRules.Run(CheckIfCarRental(rental));
-            if (result == null)
+            if (result != null)
             {
                 TimeSpan ts = rental.ReturnDate - rental.RentDate;
-                var creditCartResult = _creditCartService.Payment(creditCard, amount);
-                if (!creditCartResult.Success)
+                var creditCartResult = _creditCartService.Payment(amount);
+                if (creditCartResult.Success)
                 {
                     _rentalDal.Add(rental);
                     return new SuccessResult(Messages.DataAdded);
@@ -42,8 +42,6 @@ namespace Business.Concrete
                 {
                     creditCartResult.Message.ToString();
                 }
-                
-                
             }
             var informationResult = _rentalDal.Get(x => x.CarId == rental.CarId).ReturnDate;
             return new ErrorResult("Araç bu tarihe kadar kiralanmış " + informationResult);
@@ -83,13 +81,12 @@ namespace Business.Concrete
         }
         public IResult CheckIfCarRental(Rental rental)
         {
-            var result = _rentalDal.GetAll(r => r.CarId == rental.CarId && rental.RentDate >= DateTime.Now && rental.ReturnDate >= r.ReturnDate  && rental.RentDate >= r.ReturnDate).Any();
+            var result = _rentalDal.GetAll(r => r.CarId == rental.CarId && rental.RentDate > r.ReturnDate && rental.ReturnDate > r.RentDate).Any();
             if (result)
             {
-                return new ErrorResult();
+                return new SuccessResult();
             }
-            return new SuccessResult();
+            return new ErrorResult();
         }
     }
-   
 }

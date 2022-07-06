@@ -82,6 +82,8 @@ namespace WebAPI
                 app.UseDeveloperExceptionPage();
             }
 
+            app.ConfigureCustomExceptionMiddleware(); // MiddleWare yaþam döngüsünde hata yakalama middleware de çalýþtýr diyoruz.
+
             app.UseCors(builder => builder.WithOrigins("http://localhost:4200").AllowAnyHeader());
 
             app.UseStaticFiles();
