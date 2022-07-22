@@ -14,7 +14,6 @@ namespace Business.ValidationRules.FluentValidation
             RuleFor(r => r.DailyPrice).GreaterThan(0);
             RuleFor(r => r.Description).MinimumLength(2);
             RuleFor(r => r.BrandId).NotEmpty();
-            RuleFor(r => r.ColorId).NotEmpty();
         }
     }
 }

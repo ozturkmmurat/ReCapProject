@@ -38,10 +38,12 @@ namespace Business.Concrete
             //CarValidator carValidator = new CarValidator();  
             //var result = carValidator.Validate(context); // CarValidator classındaki kurallara uyuyor mu context kontrol et
 
-           /* ValidationTool.Validate(new CarValidator(), car); */ // Üstteki 3 satır kodun yaptığı işlemi Core katmanında 
-            // CrossCutingConcers bölümünde gerçekleştirdik
-                _carDal.Add(car);
-                return new SuccessResult(Messages.DataAdded);
+            /* ValidationTool.Validate(new CarValidator(), car); */ // Üstteki 3 satır kodun yaptığı işlemi Core katmanında 
+                                                                    // CrossCutingConcers bölümünde gerçekleştirdik
+
+            _carDal.Add(car);
+            return new SuccessResult(Messages.DataAdded);
+
 
         }
         [CacheRemoveAspect("ICarService.Get")]
@@ -54,13 +56,13 @@ namespace Business.Concrete
         public IDataResult<List<Car>> GetAllCars()
         {
 
-            return  new SuccessDataResult<List<Car>>(_carDal.GetAll(), Messages.GetByAll);
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(), Messages.GetByAll);
         }
         [CacheAspect]
         public IDataResult<Car> GetById(int id)
         {
             var result = _carDal.Get(c => c.Id == id);
-            if(result != null)
+            if (result != null)
             {
                 return new SuccessDataResult<Car>(result, Messages.GetByIdMessage);
             }
@@ -79,11 +81,11 @@ namespace Business.Concrete
         [CacheAspect]
         public IDataResult<List<CarDetailDTO>> GetCarsDetailDTO()
         {
-           return new SuccessDataResult<List<CarDetailDTO>>(_carDal.GetCarDetails(), Messages.GetByAll);
+            return new SuccessDataResult<List<CarDetailDTO>>(_carDal.GetCarDetails(), Messages.GetByAll);
         }
         public IDataResult<List<CarDetailDTO>> GetByBrandNameByColorNameCarDetails(string brandName, string colorName)
         {
-            
+
             if (brandName == "undefined" && colorName != null)
             {
                 return new SuccessDataResult<List<CarDetailDTO>>(_carDal.GetByBrandNameByColorNameCarDetails(x => x.ColorName == colorName));
@@ -96,7 +98,7 @@ namespace Business.Concrete
         }
         public IDataResult<CarDetailDTO> GetCarsIdDetailDTO(int id)
         {
-            var result = _carDal.GetCarIdDetails(c=> c.CarId == id);
+            var result = _carDal.GetCarIdDetails(c => c.CarId == id);
             if (result != null)
             {
                 return new SuccessDataResult<CarDetailDTO>(result, Messages.GetByAll);
@@ -111,14 +113,14 @@ namespace Business.Concrete
         [CacheRemoveAspect("ICarService.Get")]
         public IResult Update(Car car)
         {
-           
+
             _carDal.Update(car);
             return new SuccessResult(Messages.DataUpdate);
         }
 
         public IDataResult<List<CarDetailDTO>> GetCarDetailsByBrandId(int brandId)
         {
-            if (brandId !=0)
+            if (brandId != 0)
             {
                 return new SuccessDataResult<List<CarDetailDTO>>(_carDal.GetCarsDetailsByBrandId(brandId));
             }

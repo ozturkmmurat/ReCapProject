@@ -79,7 +79,8 @@ namespace DataAccess.Concrete.EntityFramework
                                  CarName = c.Description,
                                  BrandName = b.Name,
                                  ColorName = cl.Name,
-                                 DailyPrice = c.DailyPrice
+                                 DailyPrice = c.DailyPrice,
+                                 ModelYear = c.ModelYear
                              };
                 return result.ToList();
 
