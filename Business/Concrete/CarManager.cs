@@ -24,11 +24,13 @@ namespace Business.Concrete
     public class CarManager : ICarService
     {
         ICarDal _carDal;
-        public CarManager(ICarDal carDal)
+        ICarImagesService _carImagesService;
+        public CarManager(ICarDal carDal,ICarImagesService  carImagesService)
         {
             _carDal = carDal;
+            _carImagesService = carImagesService;
         }
-        [SecuredOperation("caradd,admin")]
+        //[SecuredOperation("caradd,admin")]
         [ValidationAspect(typeof(CarValidator))]
         [TransactionScopeAspect]
         [CacheRemoveAspect("ICarService.Get")]

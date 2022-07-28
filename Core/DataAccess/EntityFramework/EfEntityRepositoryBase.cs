@@ -26,11 +26,14 @@ namespace Core.DataAccess.EntityFramework
         {
             using (TContext context = new TContext())
             {
+
                 var deleteEntity = context.Entry(entity);
                 deleteEntity.State = EntityState.Deleted;
                 context.SaveChanges();
             }
         }
+
+       
 
         public List<TEntity> GetAll(Expression<Func<TEntity, bool>> filter = null)
         {

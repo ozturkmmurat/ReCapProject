@@ -60,7 +60,7 @@ namespace Business.Concrete
             return new ErrorDataResult<CarImages>(Messages.GetByAllDefault);
         }
 
-        public IDataResult<List<CarImages>> GetCarsById(int id)
+        public IDataResult<List<CarImages>> GetAllCarsById(int id)
         {
             IResult result = BusinessRules.Run(CheckCarImage(id));
             if(result != null)
@@ -100,6 +100,12 @@ namespace Business.Concrete
                 return new SuccessResult();
             }
             return new ErrorResult();
+        }
+
+        public IDataResult<CarImages> GetCarsById(int id)
+        {
+          var result =  _carsImages.Get(c => c.CarId == id);
+            return new SuccessDataResult<CarImages>(result);
         }
     }
 }

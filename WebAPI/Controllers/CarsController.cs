@@ -148,10 +148,9 @@ namespace WebAPI.Controllers
         public IActionResult Delete(Car car)
         {
             var result = _carService.Delete(car);
-
             if (result.Success)
             {
-                Ok(result);
+               return Ok(result);
             }
             return BadRequest(result);
         }

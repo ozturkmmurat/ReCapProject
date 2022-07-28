@@ -65,12 +65,12 @@ namespace ConsoleUI
         }
 
 
-        private static CarManager CarTest()
-        {
-            CarManager carManager = new CarManager(new EfCarDal());
-            carManager.Add(new Car { BrandId = 1, ColorId = 1, DailyPrice = 100000, Description = "2000 Model Siyah BMW ", ModelYear = new DateTime(2000, 01, 01) });
-            return carManager;
-        }
+        //private static CarManager CarTest()
+        //{
+        //    CarManager carManager = new CarManager(new EfCarDal());
+        //    carManager.Add(new Car { BrandId = 1, ColorId = 1, DailyPrice = 100000, Description = "2000 Model Siyah BMW ", ModelYear = new DateTime(2000, 01, 01) });
+        //    return carManager;
+        //}
 
         private static BrandManager BrandTest()
         {
