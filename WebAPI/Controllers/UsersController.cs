@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Business.Abstract;
 using Core.Entities.Concrete;
 using Entities.Concrete;
+using Entities.DTOs;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -39,6 +40,8 @@ namespace WebAPI.Controllers
 
             if (result.Success)
             {
+                result.Data.PasswordHash = null;
+                result.Data.PasswordSalt = null;
                 return Ok(result);
             }
             return BadRequest(result);
@@ -55,7 +58,7 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
         [HttpPost("Update")]
-        public IActionResult Update(User user)
+        public IActionResult Update(UserForUpdateDto user)
         {
             var result = _userService.Update(user);
 

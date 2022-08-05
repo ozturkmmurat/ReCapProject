@@ -20,11 +20,13 @@ namespace Business.Concrete
         IRentalDal _rentalDal;
         ICarService _carService;
         ICreditCartService _creditCartService;
-        public RentalManager(IRentalDal rentalDal, ICarService carService, ICreditCartService creditCartService)
+        IFindexScoreService _findexScoreService;
+        public RentalManager(IRentalDal rentalDal, ICarService carService, ICreditCartService creditCartService, IFindexScoreService findexScoreService)
         {
             _rentalDal = rentalDal;
             _carService = carService;
             _creditCartService = creditCartService;
+            _findexScoreService = findexScoreService;
         }
         public IResult Add(Rental rental, CreditCard creditCard, int amount)
         {
@@ -33,14 +35,21 @@ namespace Business.Concrete
             {
                 TimeSpan ts = rental.ReturnDate - rental.RentDate;
                 var creditCartResult = _creditCartService.Payment(amount);
-                if (creditCartResult.Success)
+                var findexScoreResult = _findexScoreService.GetUserFindexScore();
+                if (!creditCartResult.Success)
                 {
-                    _rentalDal.Add(rental);
-                    return new SuccessResult(Messages.DataAdded);
+                    creditCartResult.Message.ToString();
+
+                }
+                else if (!findexScoreResult.Success)
+                {
+                    creditCartResult.Message.ToString();
                 }
                 else
                 {
-                    creditCartResult.Message.ToString();
+                    _rentalDal.Add(rental);
+                    return new SuccessResult(Messages.DataAdded);
+
                 }
             }
             var informationResult = _rentalDal.Get(x => x.CarId == rental.CarId).ReturnDate;
@@ -70,7 +79,7 @@ namespace Business.Concrete
 
         public IDataResult<List<RentalDetailsDto>> GetRentalDetailsDto()
         {
-            return new SuccessDataResult<List<RentalDetailsDto>>(_rentalDal.GetRentalDetails(),Messages.GetRentalDetailsDto);
+            return new SuccessDataResult<List<RentalDetailsDto>>(_rentalDal.GetRentalDetails(), Messages.GetRentalDetailsDto);
         }
 
         [ValidationAspect(typeof(RentalValidator))]

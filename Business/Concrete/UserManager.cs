@@ -5,8 +5,10 @@ using Core.Aspects.Autofac.Validation;
 using Core.Entities.Concrete;
 using Core.Utilities.Result.Abstract;
 using Core.Utilities.Result.Concrete;
+using Core.Utilities.Security.Hashing;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -51,9 +53,27 @@ namespace Business.Concrete
             return new ErrorDataResult<User>(Messages.GetByAllDefault);
         }
 
-        [ValidationAspect(typeof(UserValidator))]
-        public IResult Update(User user)
+        public IResult Update(UserForUpdateDto userForUpdateDto)
         {
+            byte[] passwordHash, passwordSalt;
+            HashingHelper.CreatePasswordHash(userForUpdateDto.Password, out passwordHash, out passwordSalt);
+
+ 
+            if (GetByMail(userForUpdateDto.Email) != null && GetById(userForUpdateDto.UserId).Data.Email != userForUpdateDto.Email)
+            {
+                return new ErrorResult("Böyle bir e-mail mevcut başka bir mail adresi giriniz");
+            }
+
+              var user = new User
+              {
+                  Id = userForUpdateDto.UserId,
+                  Email = userForUpdateDto.Email,
+                  FirstName = userForUpdateDto.FirstName,
+                  LastName = userForUpdateDto.LastName,
+                  PasswordHash = passwordHash,
+                  PasswordSalt = passwordSalt,
+                  Status = true
+              };
             _userDal.Update(user);
             return new SuccessResult(Messages.DataUpdate);
         }

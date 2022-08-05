@@ -8,6 +8,7 @@ using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Business.Constans;
 
 namespace Business.Concrete
 {
@@ -25,6 +26,12 @@ namespace Business.Concrete
         public IDataResult<User> Register(UserForRegisterDto userForRegisterDto, string password)
         {
             byte[] passwordHash, passwordSalt;
+
+            if (_userService.GetByMail(userForRegisterDto.Email) != null)
+            {
+                return new ErrorDataResult<User>(Messages.CurrentMail);
+            }
+
             HashingHelper.CreatePasswordHash(password, out passwordHash, out passwordSalt);
             var user = new User
             {

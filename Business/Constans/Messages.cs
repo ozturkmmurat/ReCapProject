@@ -18,5 +18,6 @@ namespace Business.Constans
         public static string GetByClaim = "Kullanıcının yetkileri listelendi";
         public static string AuthorizationDenied = "Yetkiniz yok.";
         public static string GetRentalDetailsDto = "Kira detayları listelendi";
+        public static string CurrentMail = "Bu mail adresine sahip bir kullanıcı mevcut.";
     }
 }
