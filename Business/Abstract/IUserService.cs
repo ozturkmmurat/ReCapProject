@@ -14,9 +14,12 @@ namespace Business.Abstract
         IDataResult<List<User>> GetAllUser();
         IDataResult<User> GetById(int id);
         User GetByMail(string email);
+        IResult CheckPassword(string email, string password);
+        IResult CheckEmail(string email);
         IResult Add(User user);
         IResult Update(UserForUpdateDto userForRegisterDto);
-        IResult Delete(User user);     
+        IResult Delete(User user);    
+        
 
     }
 }

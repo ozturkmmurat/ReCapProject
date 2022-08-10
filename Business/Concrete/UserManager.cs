@@ -26,7 +26,7 @@ namespace Business.Concrete
         public IResult Add(User user)
         {
             _userDal.Add(user);
-           return new SuccessResult(Messages.DataAdded);
+            return new SuccessResult(Messages.DataAdded);
         }
 
         public IResult Delete(User user)
@@ -46,9 +46,9 @@ namespace Business.Concrete
         public IDataResult<User> GetById(int id)
         {
             var result = _userDal.Get(u => u.Id == id);
-            if(result != null)
+            if (result != null)
             {
-                return new SuccessDataResult<User>(result, Messages.GetByIdMessage);               
+                return new SuccessDataResult<User>(result, Messages.GetByIdMessage);
             }
             return new ErrorDataResult<User>(Messages.GetByAllDefault);
         }
@@ -56,24 +56,34 @@ namespace Business.Concrete
         public IResult Update(UserForUpdateDto userForUpdateDto)
         {
             byte[] passwordHash, passwordSalt;
-            HashingHelper.CreatePasswordHash(userForUpdateDto.Password, out passwordHash, out passwordSalt);
+            HashingHelper.CreatePasswordHash(userForUpdateDto.NewPassword, out passwordHash, out passwordSalt);
 
- 
+
             if (GetByMail(userForUpdateDto.Email) != null && GetById(userForUpdateDto.UserId).Data.Email != userForUpdateDto.Email)
             {
                 return new ErrorResult("Böyle bir e-mail mevcut başka bir mail adresi giriniz");
             }
 
-              var user = new User
-              {
-                  Id = userForUpdateDto.UserId,
-                  Email = userForUpdateDto.Email,
-                  FirstName = userForUpdateDto.FirstName,
-                  LastName = userForUpdateDto.LastName,
-                  PasswordHash = passwordHash,
-                  PasswordSalt = passwordSalt,
-                  Status = true
-              };
+
+            if (userForUpdateDto.NewPassword != null && userForUpdateDto.OldPassword != null)
+            {
+                var result = CheckPassword(userForUpdateDto.Email, userForUpdateDto.OldPassword);
+                if (result.Success != true)
+                {
+                    return new ErrorResult("Eski şifreniz hatalı");
+                }
+            }
+
+            var user = new User
+            {
+                Id = userForUpdateDto.UserId,
+                Email = userForUpdateDto.Email,
+                FirstName = userForUpdateDto.FirstName,
+                LastName = userForUpdateDto.LastName,
+                PasswordHash = passwordHash,
+                PasswordSalt = passwordSalt,
+                Status = true
+            };
             _userDal.Update(user);
             return new SuccessResult(Messages.DataUpdate);
         }
@@ -81,6 +91,32 @@ namespace Business.Concrete
         public User GetByMail(string email)
         {
             return _userDal.Get(u => u.Email == email);
+        }
+
+        public IDataResult<User> GetWhereMailById(int id)
+        {
+            var result = _userDal.Get(u => u.Id == id);
+            return new SuccessDataResult<User>(result);
+        }
+
+        public IResult CheckPassword(string email, string password)
+        {
+            var userToCheck = GetByMail(email);
+            if (!HashingHelper.VerifyPasswordHash(password, userToCheck.PasswordHash, userToCheck.PasswordSalt))
+            {
+                return new ErrorDataResult<User>();
+            }
+            return new SuccessResult();
+        }
+
+        public IResult CheckEmail(string email)
+        {
+            var userToCheck = GetByMail(email);
+            if (userToCheck == null)
+            {
+                return new ErrorDataResult<User>();
+            }
+            return new SuccessResult();
         }
     }
 }

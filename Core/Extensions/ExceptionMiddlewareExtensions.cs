@@ -10,7 +10,9 @@ namespace Core.Extensions
         //Startup.cs de Middleware yaşam döngüsünde çalıştırıyoruz.
         public static void ConfigureCustomExceptionMiddleware(this IApplicationBuilder app)
         {
-            app.UseMiddleware<ExceptionMiddleware>(); //Hata yakalama middleware çalıştır.
+           
+                app.UseMiddleware<ExceptionMiddleware>(); //Hata yakalama middleware çalıştır.
+            
         }
     }
 }

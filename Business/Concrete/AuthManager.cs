@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Business.Constans;
+using Core.Business;
 
 namespace Business.Concrete
 {
@@ -49,17 +50,14 @@ namespace Business.Concrete
         public IDataResult<User> Login(UserForLoginDto userForLoginDto)
         {
             var userToCheck = _userService.GetByMail(userForLoginDto.Email);
-            if (userToCheck == null)
-            {
-                return new ErrorDataResult<User>("Kullanıcı bulunamadı");
-            }
 
-            if (!HashingHelper.VerifyPasswordHash(userForLoginDto.Password, userToCheck.PasswordHash, userToCheck.PasswordSalt))
+            IResult result = BusinessRules.Run(_userService.CheckPassword(userForLoginDto.Email,userForLoginDto.Password), _userService.CheckEmail(userForLoginDto.Email));
+            if (result == null)
             {
-                return new ErrorDataResult<User>("Parola Hatası");
+                return new SuccessDataResult<User>(userToCheck, "Başarılı giriş");
             }
-
-            return new SuccessDataResult<User>(userToCheck, "Başarılı giriş");
+            return new ErrorDataResult<User>("Email ve şifreyi kontrol ediniz");
+            
         }
 
         public IResult UserExists(string email)
@@ -77,5 +75,8 @@ namespace Business.Concrete
             var accessToken = _tokenHelper.CreateToken(user, claims.Data);
             return new SuccessDataResult<AccessToken>(accessToken, "Token oluşturuldu.");
         }
+
+
+       
     }
 }

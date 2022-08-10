@@ -47,8 +47,9 @@ namespace Business.DependecyResolvers.Autofac
             builder.RegisterType<CreditCartManager>().As<ICreditCartService>().SingleInstance();
             builder.RegisterType<EfCreditCartDal>().As<ICreditCartDal>().SingleInstance();
 
-            builder.RegisterType<AuthManager>().As<IAuthService>();
-            builder.RegisterType<JwtHelper>().As<ITokenHelper>();
+
+            builder.RegisterType<AuthManager>().As<IAuthService>().SingleInstance();
+            builder.RegisterType<JwtHelper>().As<ITokenHelper>().SingleInstance();
 
             // Atribute var mı yok mu onu kontrol et diyoruz 
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();
