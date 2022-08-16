@@ -76,7 +76,18 @@ namespace Business.Concrete
             return new SuccessDataResult<AccessToken>(accessToken, "Token oluşturuldu.");
         }
 
-
-       
+        public IDataResult<AccessToken> RefreshTokenLogin(string refreshToken)
+        {
+            var result  = _userService.GetByRefreshToken(refreshToken);
+            User user = result.Data;
+            if (result != null && result?.Data.RefreshTokenEndDate > DateTime.UtcNow)
+            {
+                var token = CreateAccessToken(user);
+                AccessToken accessToken = token.Data;
+                _userService.UpdateRefreshToken(token.Data.RefreshToken,user,token.Data.RefreshTokenEndDate);
+                return new SuccessDataResult<AccessToken>(accessToken);
+            }else
+            return new ErrorDataResult<AccessToken>("Tokenın süresi bitmiş bulunmaktadır.");
+        }
     }
 }

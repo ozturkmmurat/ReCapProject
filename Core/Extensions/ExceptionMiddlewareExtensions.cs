@@ -11,7 +11,7 @@ namespace Core.Extensions
         public static void ConfigureCustomExceptionMiddleware(this IApplicationBuilder app)
         {
            
-                app.UseMiddleware<ExceptionMiddleware>(); //Hata yakalama middleware çalıştır.
+            app.UseMiddleware<ExceptionMiddleware>(); //Hata yakalama middleware çalıştır.
             
         }
     }

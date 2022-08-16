@@ -40,8 +40,8 @@ namespace WebAPI.Controllers
 
             if (result.Success)
             {
-                result.Data.PasswordHash = null;
-                result.Data.PasswordSalt = null;
+                //result.Data.PasswordHash = null;
+                //result.Data.PasswordSalt = null;
                 return Ok(result);
             }
             return BadRequest(result);

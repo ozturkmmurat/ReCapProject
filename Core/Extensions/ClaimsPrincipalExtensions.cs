@@ -25,5 +25,15 @@ namespace Core.Extensions
         {
             return claimsPrincipal?.Claims(ClaimTypes.Role); // Claim role göre getiriyor 
         }
+
+        //public static DateTime ClaimExpiration(this ClaimsPrincipal claimsPrincipal)
+        //{
+        //    var exp = DateTimeOffset.FromUnixTimeSeconds(long.Parse(claimsPrincipal.FindFirst("exp").Value));
+
+        //    DateTime result = exp.DateTime;
+        //    var dateResult = DateTime.Now - result;
+        //    result.AddMilliseconds(dateResult.Milliseconds);
+        //    return result;
+        //}
     }
 }

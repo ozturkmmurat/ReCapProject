@@ -8,5 +8,7 @@ namespace Core.Utilities.Security.JWT
     {
         public string Token { get; set; } // Jwt kendisi 
         public DateTime Expiration { get; set; } // Tokenın ne zaman sonlanacağı bilgisi
+        public string RefreshToken { get; set; }
+        public DateTime RefreshTokenEndDate { get; set; }
     }
 }

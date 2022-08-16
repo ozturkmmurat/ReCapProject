@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.Constans;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
@@ -52,11 +53,10 @@ namespace Business.Concrete
             }
             return new ErrorDataResult<User>(Messages.GetByAllDefault);
         }
-
+        [SecuredOperation("user")]
         public IResult Update(UserForUpdateDto userForUpdateDto)
         {
             byte[] passwordHash, passwordSalt;
-            HashingHelper.CreatePasswordHash(userForUpdateDto.NewPassword, out passwordHash, out passwordSalt);
 
 
             if (GetByMail(userForUpdateDto.Email) != null && GetById(userForUpdateDto.UserId).Data.Email != userForUpdateDto.Email)
@@ -65,26 +65,48 @@ namespace Business.Concrete
             }
 
 
-            if (userForUpdateDto.NewPassword != null && userForUpdateDto.OldPassword != null)
+            if (userForUpdateDto.NewPassword != null)
             {
+                if(userForUpdateDto.OldPassword == null)
+                {
+                    return new ErrorResult("Şifrenizi yenilemek içni eski şifreyi de girmelisiniz");
+                }
                 var result = CheckPassword(userForUpdateDto.Email, userForUpdateDto.OldPassword);
                 if (result.Success != true)
                 {
                     return new ErrorResult("Eski şifreniz hatalı");
                 }
+                HashingHelper.CreatePasswordHash(userForUpdateDto.NewPassword, out passwordHash, out passwordSalt);
+                var user = new User
+                {
+                    Id = userForUpdateDto.UserId,
+                    Email = userForUpdateDto.Email,
+                    FirstName = userForUpdateDto.FirstName,
+                    LastName = userForUpdateDto.LastName,
+                    PasswordHash = passwordHash,
+                    PasswordSalt = passwordSalt,
+                    Status = true
+                };
+                _userDal.Update(user);
+            }
+            else
+            {
+
+                var result = GetById(userForUpdateDto.UserId);
+                var user = new User
+                {
+                    Id = userForUpdateDto.UserId,
+                    Email = userForUpdateDto.Email,
+                    FirstName = userForUpdateDto.FirstName,
+                    LastName = userForUpdateDto.LastName,
+                    PasswordHash = result.Data.PasswordHash,
+                    PasswordSalt = result.Data.PasswordSalt,
+                    Status = true
+                };
+                _userDal.Update(user);
             }
 
-            var user = new User
-            {
-                Id = userForUpdateDto.UserId,
-                Email = userForUpdateDto.Email,
-                FirstName = userForUpdateDto.FirstName,
-                LastName = userForUpdateDto.LastName,
-                PasswordHash = passwordHash,
-                PasswordSalt = passwordSalt,
-                Status = true
-            };
-            _userDal.Update(user);
+
             return new SuccessResult(Messages.DataUpdate);
         }
 
@@ -117,6 +139,28 @@ namespace Business.Concrete
                 return new ErrorDataResult<User>();
             }
             return new SuccessResult();
+        }
+
+        public IResult UpdateRefreshToken(string refreshToken,User user, DateTime accessTokenDate)
+        {
+            if(user != null)
+            {
+                user.RefreshToken = refreshToken;
+                user.RefreshTokenEndDate = accessTokenDate.AddMinutes(10);
+                _userDal.Update(user);
+                return new SuccessResult();
+            }
+            return new ErrorResult();
+        }
+
+        public IDataResult<User> GetByRefreshToken(string refreshToken)
+        {
+            var result = _userDal.Get(u => u.RefreshToken == refreshToken);
+            if(result != null)
+            {
+                return new SuccessDataResult<User>(result);
+            }
+            return new ErrorDataResult<User>();
         }
     }
 }

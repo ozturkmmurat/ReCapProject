@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.Constans;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
@@ -31,10 +32,15 @@ namespace Business.Concrete
             _brandDal.Delete(brand);
             return new SuccessResult(Messages.DataDeleted);
         }
-    
+        [SecuredOperation("user")]
         public IDataResult<List<Brand>> GetAll()
         {
-            return new SuccessDataResult<List<Brand>>(_brandDal.GetAll(), Messages.GetByAll);
+            var result = _brandDal.GetAll();
+            if (result != null)
+            {
+                return new SuccessDataResult<List<Brand>>(_brandDal.GetAll(), Messages.GetByAll);
+            }
+            return new ErrorDataResult<List<Brand>>("Hata");
         }
 
         public IDataResult<Brand> GetById(int id)

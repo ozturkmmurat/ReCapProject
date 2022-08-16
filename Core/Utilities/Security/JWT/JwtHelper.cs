@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace Core.Utilities.Security.JWT
@@ -27,20 +28,32 @@ namespace Core.Utilities.Security.JWT
         }
         public AccessToken CreateToken(User user, List<OperationClaim> operationClaims)
         {
-            _accessTokenExpiration = DateTime.Now.AddMinutes(_tokenOptions.AccessTokenExpiration); // Şimdiye 10 dk ekle 
+            _accessTokenExpiration = DateTime.Now.AddSeconds(_tokenOptions.AccessTokenExpiration); // Şimdiye 10 dk ekle 
             var securityKey = SecurityKeyHelper.CreateSecurityKey(_tokenOptions.SecurityKey);  //Securitey oluşturuyoruz 
             var signingCredentials = SigningCredentialsHelper.CreateSigningCredentials(securityKey); // Hangi algoritmayı ve hangi anahtarı kullanayım diyor
                                                                                                      // Credentials kullanıcı bilgileri oluyor.
             var jwt = CreateJwtSecurityToken(_tokenOptions, user, signingCredentials, operationClaims);
             var jwtSecurityTokenHandler = new JwtSecurityTokenHandler();
             var token = jwtSecurityTokenHandler.WriteToken(jwt);
-
             return new AccessToken
             {
                 Token = token,
-                Expiration = _accessTokenExpiration
+                Expiration = _accessTokenExpiration,
+                RefreshToken = CreateRefreshToken(user, operationClaims),
+                RefreshTokenEndDate = _accessTokenExpiration.AddSeconds(50)
             };
 
+        }
+
+        public string CreateRefreshToken(User user, List<OperationClaim> operationClaims)
+        {
+            byte[] number = new byte[32];
+            using (RandomNumberGenerator random = RandomNumberGenerator.Create())
+            {
+                random.GetBytes(number);
+                return Convert.ToBase64String(number);
+            }
+           
         }
 
         public JwtSecurityToken CreateJwtSecurityToken(TokenOptions tokenOptions, User user,
