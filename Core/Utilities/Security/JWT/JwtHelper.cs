@@ -28,7 +28,7 @@ namespace Core.Utilities.Security.JWT
         }
         public AccessToken CreateToken(User user, List<OperationClaim> operationClaims)
         {
-            _accessTokenExpiration = DateTime.Now.AddSeconds(_tokenOptions.AccessTokenExpiration); // Şimdiye 10 dk ekle 
+            _accessTokenExpiration = DateTime.Now.AddMinutes(_tokenOptions.AccessTokenExpiration); // Şimdiye 10 dk ekle 
             var securityKey = SecurityKeyHelper.CreateSecurityKey(_tokenOptions.SecurityKey);  //Securitey oluşturuyoruz 
             var signingCredentials = SigningCredentialsHelper.CreateSigningCredentials(securityKey); // Hangi algoritmayı ve hangi anahtarı kullanayım diyor
                                                                                                      // Credentials kullanıcı bilgileri oluyor.
@@ -40,7 +40,7 @@ namespace Core.Utilities.Security.JWT
                 Token = token,
                 Expiration = _accessTokenExpiration,
                 RefreshToken = CreateRefreshToken(user, operationClaims),
-                RefreshTokenEndDate = _accessTokenExpiration.AddSeconds(50)
+                RefreshTokenEndDate = _accessTokenExpiration.AddMinutes(50)
             };
 
         }

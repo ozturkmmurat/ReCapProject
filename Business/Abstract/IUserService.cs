@@ -14,8 +14,8 @@ namespace Business.Abstract
         IDataResult<List<User>> GetAllUser();
         IDataResult<User> GetById(int id);
         IDataResult<User> GetByRefreshToken(string refreshToken);
-        IResult UpdateRefreshToken(string refreshToken,User user, DateTime accessTokenDate);
         User GetByMail(string email);
+        IResult UpdateRefreshToken(string refreshToken,User user, DateTime accessTokenDate);
         IResult CheckPassword(string email, string password);
         IResult CheckEmail(string email);
         IResult Add(User user);

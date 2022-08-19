@@ -112,7 +112,12 @@ namespace Business.Concrete
 
         public User GetByMail(string email)
         {
-            return _userDal.Get(u => u.Email == email);
+            var result = _userDal.Get(u => u.Email == email);
+           if (result !=null)
+            {
+                return result;
+            }
+            return null;
         }
 
         public IDataResult<User> GetWhereMailById(int id)
@@ -124,9 +129,12 @@ namespace Business.Concrete
         public IResult CheckPassword(string email, string password)
         {
             var userToCheck = GetByMail(email);
-            if (!HashingHelper.VerifyPasswordHash(password, userToCheck.PasswordHash, userToCheck.PasswordSalt))
+            if(userToCheck != null)
             {
-                return new ErrorDataResult<User>();
+                if (!HashingHelper.VerifyPasswordHash(password, userToCheck.PasswordHash, userToCheck.PasswordSalt))
+                {
+                    return new ErrorDataResult<User>();
+                }
             }
             return new SuccessResult();
         }

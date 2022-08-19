@@ -27,22 +27,14 @@ namespace Business.BusinessAspects.Autofac
         protected override void OnBefore(IInvocation invocation)
         {
             var roleClaims = _httpContextAccessor.HttpContext.User.ClaimRoles(); // O an ki kullanıcını Claimroles bul diyoruz 
-            //var claimExpiration =  _httpContextAccessor.HttpContext.User.ClaimExpiration();
             foreach (var role in _roles)
             {
-                
-                    if (roleClaims.Contains(role)) // Claimlerin içinde ilgili rol var ise 
-                    {
-                        return; // Metodu çalıştırmaya devam et 
-                    }
-                    else
-                    {
-                        throw new UnauthorizedAccessException(StatusCodes.Status401Unauthorized.ToString());
-                    }
+                if (roleClaims.Contains(role)) // Claimlerin içinde ilgili rol var ise 
+                {
+                    return; // Metodu çalıştırmaya devam et 
                 }
-               
-                
             }
-            
+            throw new Exception(Messages.AuthorizationDenied); // Eğer ki claimi yok ise hata ver 
         }
     }
+}

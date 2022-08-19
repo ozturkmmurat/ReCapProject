@@ -34,7 +34,7 @@ namespace Core.Extensions
         private Task HandleExceptionAsync(HttpContext httpContext, Exception e)
         {
             httpContext.Response.ContentType = "application/json";
-            httpContext.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
+            httpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
 
             string message = e.Message;
             IEnumerable<ValidationFailure> errors;

@@ -19,5 +19,7 @@ namespace Business.Constans
         public static string AuthorizationDenied = "Yetkiniz yok.";
         public static string GetRentalDetailsDto = "Kira detayları listelendi";
         public static string CurrentMail = "Bu mail adresine sahip bir kullanıcı mevcut.";
+        public static string GetDefaultCreditCard = "Herhangi bir kredi kartı bulunamadı.";
+        public static string GetCreditCard = "Kredi kartı bilgileri başarıyla getirildi.";
     }
 }

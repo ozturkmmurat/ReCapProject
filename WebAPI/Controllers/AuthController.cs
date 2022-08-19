@@ -31,7 +31,8 @@ namespace WebAPI.Controllers
             {
                 return BadRequest(userToLogin.Message);
             }
-            User user =   _userService.GetByMail(userForLoginDto.Email);
+            User user = new User();
+            user = _userService.GetByMail(userForLoginDto.Email);
             var result = _authService.CreateAccessToken(userToLogin.Data);
             _userService.UpdateRefreshToken(result.Data.RefreshToken,user,result.Data.Expiration);
             if (result.Success)

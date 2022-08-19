@@ -21,10 +21,53 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("Add")]
-        public IActionResult Add(int amount)
+        public IActionResult Add(CreditCard creditCard)
         {
-            var result = _creditCartService.Payment(amount);
+            var result = _creditCartService.Add(creditCard);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
 
+        [HttpPost("Delete")]
+        public IActionResult Delete(CreditCard creditCard)
+        {
+            var result = _creditCartService.Delete(creditCard);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        [HttpGet("GetAll")]
+        public IActionResult GetAll()
+        {
+            var result = _creditCartService.GetAllCreditCard();
+
+            if(result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        [HttpGet("GetById")]
+        public IActionResult GetById(int id)
+        {
+            var result = _creditCartService.GetById(id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+        [HttpGet("GetByUserId")]
+        public IActionResult GetByUserId(int id)
+        {
+            var result = _creditCartService.GetByUserId(id);
             if (result.Success)
             {
                 return Ok(result);
