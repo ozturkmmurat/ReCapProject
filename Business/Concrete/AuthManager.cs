@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Text;
 using Business.Constans;
 using Core.Business;
+using Microsoft.AspNetCore.Http;
 
 namespace Business.Concrete
 {
@@ -74,20 +75,6 @@ namespace Business.Concrete
             var claims = _userService.GetClaims(user);
             var accessToken = _tokenHelper.CreateToken(user, claims.Data);
             return new SuccessDataResult<AccessToken>(accessToken, "Token oluşturuldu.");
-        }
-
-        public IDataResult<AccessToken> RefreshTokenLogin(string refreshToken)
-        {
-            var result  = _userService.GetByRefreshToken(refreshToken);
-            User user = result.Data;
-            if (result != null && result?.Data.RefreshTokenEndDate > DateTime.UtcNow)
-            {
-                var token = CreateAccessToken(user);
-                AccessToken accessToken = token.Data;
-                _userService.UpdateRefreshToken(token.Data.RefreshToken,user,token.Data.RefreshTokenEndDate);
-                return new SuccessDataResult<AccessToken>(accessToken);
-            }else
-            return new ErrorDataResult<AccessToken>("Tokenın süresi bitmiş bulunmaktadır.");
         }
     }
 }

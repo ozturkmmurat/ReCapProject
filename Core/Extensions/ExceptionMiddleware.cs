@@ -1,4 +1,5 @@
-﻿using FluentValidation;
+﻿using Core.Utilities.Messages;
+using FluentValidation;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Http;
 using System;
@@ -10,7 +11,7 @@ using static Core.Extensions.ErrorDetails;
 
 namespace Core.Extensions
 {
-   public class ExceptionMiddleware
+    public class ExceptionMiddleware
     {
         private RequestDelegate _next;
 
@@ -38,10 +39,11 @@ namespace Core.Extensions
 
             string message = e.Message;
             IEnumerable<ValidationFailure> errors;
+
             if (e.GetType() == typeof(ValidationException))
             {
                 message = e.Message;
-                errors = ((ValidationException) e).Errors;
+                errors = ((ValidationException)e).Errors;
                 httpContext.Response.StatusCode = 400;
 
                 return httpContext.Response.WriteAsync(new ValidationErrorDetails
@@ -51,6 +53,31 @@ namespace Core.Extensions
                     Errors = errors
                 }.ToString());
 
+            }
+
+
+            if (e.GetType() == typeof(SecuredOperationException))
+            {
+                if (e.Message == UserMessages.AuthorizationDenied)
+                {
+                    message = e.Message;
+                    httpContext.Response.StatusCode = 401;
+                }
+                else if (e.Message == UserMessages.TokenExpired)
+                {
+                    message = e.Message;
+                    httpContext.Response.StatusCode = 403;
+                }
+                else if (e.Message == UserMessages.RefreshTokenExpired)
+                {
+                    message = e.Message;
+                    httpContext.Response.StatusCode = 410;
+                }
+                return httpContext.Response.WriteAsync(new ErrorDetails
+                {
+                    Message = message,
+                    StatusCode = httpContext.Response.StatusCode
+                }.ToString());
             }
 
 

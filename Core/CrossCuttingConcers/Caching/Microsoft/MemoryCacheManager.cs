@@ -30,6 +30,11 @@ namespace Core.CrossCuttingConcers.Caching.Microsoft
             _memoryCache.Set(key, data, TimeSpan.FromMinutes(duration));
         }
 
+        public void Add(string key, object data)
+        {
+            _memoryCache.Set(key, data);
+        }
+
         public bool IsAdd(string key)
         {
             return _memoryCache.TryGetValue(key, out _);

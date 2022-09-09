@@ -1,4 +1,5 @@
 ﻿using Core.Entities.Concrete;
+using Core.Entities.Dtos;
 using Core.Utilities.Result.Abstract;
 using Entities.Concrete;
 using Entities.DTOs;
@@ -15,7 +16,7 @@ namespace Business.Abstract
         IDataResult<User> GetById(int id);
         IDataResult<User> GetByRefreshToken(string refreshToken);
         User GetByMail(string email);
-        IResult UpdateRefreshToken(string refreshToken,User user, DateTime accessTokenDate);
+        IResult UpdateRefreshToken(UserRefreshTokenDto userRefreshTokenDto);
         IResult CheckPassword(string email, string password);
         IResult CheckEmail(string email);
         IResult Add(User user);

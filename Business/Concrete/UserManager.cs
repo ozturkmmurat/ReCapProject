@@ -4,6 +4,7 @@ using Business.Constans;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
 using Core.Entities.Concrete;
+using Core.Entities.Dtos;
 using Core.Utilities.Result.Abstract;
 using Core.Utilities.Result.Concrete;
 using Core.Utilities.Security.Hashing;
@@ -149,12 +150,13 @@ namespace Business.Concrete
             return new SuccessResult();
         }
 
-        public IResult UpdateRefreshToken(string refreshToken,User user, DateTime accessTokenDate)
+        public IResult UpdateRefreshToken(UserRefreshTokenDto userRefreshTokenDto)
         {
-            if(user != null)
+            if(userRefreshTokenDto != null)
             {
-                user.RefreshToken = refreshToken;
-                user.RefreshTokenEndDate = accessTokenDate.AddMinutes(10);
+                var user = _userDal.Get(x => x.Id == userRefreshTokenDto.UserId);
+                user.RefreshToken = userRefreshTokenDto.RefreshToken;
+                user.RefreshTokenEndDate = userRefreshTokenDto.RefresTokenExpiration;
                 _userDal.Update(user);
                 return new SuccessResult();
             }
@@ -164,11 +166,12 @@ namespace Business.Concrete
         public IDataResult<User> GetByRefreshToken(string refreshToken)
         {
             var result = _userDal.Get(u => u.RefreshToken == refreshToken);
-            if(result != null)
+            if (result != null)
             {
                 return new SuccessDataResult<User>(result);
             }
             return new ErrorDataResult<User>();
         }
+
     }
 }

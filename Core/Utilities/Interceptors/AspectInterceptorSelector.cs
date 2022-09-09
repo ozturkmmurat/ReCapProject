@@ -15,7 +15,7 @@ namespace Core.Utilities.Interceptors
             var methodAttributes = type.GetMethod(method.Name)
                 .GetCustomAttributes<MethodInterceptionBaseAttribute>(true);// Git Metodun Attributelarını oku 
             classAttributes.AddRange(methodAttributes);
-            classAttributes.Add(new PerformanceAspect(10));
+            //classAttributes.Add(new PerformanceAspect(10));
 
             return classAttributes.OrderBy(x => x.Priority).ToArray();
         }

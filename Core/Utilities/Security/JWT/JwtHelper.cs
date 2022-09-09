@@ -10,7 +10,6 @@ using System.Linq;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
-
 namespace Core.Utilities.Security.JWT
 {
     public class JwtHelper : ITokenHelper
@@ -26,9 +25,9 @@ namespace Core.Utilities.Security.JWT
                                                                                           //TokenOptions daki Audience ata 
 
         }
-        public AccessToken CreateToken(User user, List<OperationClaim> operationClaims)
+        public AccessToken CreateToken(Entities.Concrete.User user, List<OperationClaim> operationClaims)
         {
-            _accessTokenExpiration = DateTime.Now.AddMinutes(_tokenOptions.AccessTokenExpiration); // Şimdiye 10 dk ekle 
+            _accessTokenExpiration = DateTime.Now.AddSeconds(_tokenOptions.AccessTokenExpiration); // Şimdiye 10 dk ekle 
             var securityKey = SecurityKeyHelper.CreateSecurityKey(_tokenOptions.SecurityKey);  //Securitey oluşturuyoruz 
             var signingCredentials = SigningCredentialsHelper.CreateSigningCredentials(securityKey); // Hangi algoritmayı ve hangi anahtarı kullanayım diyor
                                                                                                      // Credentials kullanıcı bilgileri oluyor.
@@ -40,12 +39,12 @@ namespace Core.Utilities.Security.JWT
                 Token = token,
                 Expiration = _accessTokenExpiration,
                 RefreshToken = CreateRefreshToken(user, operationClaims),
-                RefreshTokenEndDate = _accessTokenExpiration.AddMinutes(50)
+                RefreshTokenEndDate = _accessTokenExpiration.AddSeconds(25)
             };
 
         }
 
-        public string CreateRefreshToken(User user, List<OperationClaim> operationClaims)
+        public string CreateRefreshToken(Entities.Concrete.User user, List<OperationClaim> operationClaims)
         {
             byte[] number = new byte[32];
             using (RandomNumberGenerator random = RandomNumberGenerator.Create())
@@ -56,7 +55,7 @@ namespace Core.Utilities.Security.JWT
            
         }
 
-        public JwtSecurityToken CreateJwtSecurityToken(TokenOptions tokenOptions, User user,
+        public JwtSecurityToken CreateJwtSecurityToken(TokenOptions tokenOptions, Entities.Concrete.User user,
             SigningCredentials signingCredentials, List<OperationClaim> operationClaims)
         {
             var jwt = new JwtSecurityToken(
@@ -70,7 +69,7 @@ namespace Core.Utilities.Security.JWT
             return jwt;
         }
 
-        private IEnumerable<Claim> SetClaims(User user, List<OperationClaim> operationClaims)
+        private IEnumerable<Claim> SetClaims(Entities.Concrete.User user, List<OperationClaim> operationClaims)
         {
             var claims = new List<Claim>();
             claims.AddNameIdentifier(user.Id.ToString());

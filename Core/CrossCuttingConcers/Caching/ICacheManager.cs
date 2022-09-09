@@ -13,6 +13,7 @@ namespace Core.CrossCuttingConcers.Caching
         // Liste şeklinde Get ve Tek bir veriyi getiren Get olduğu için 
         object Get(string key);  // Generic olmayan versiyonu get ile aynı farklı çeşit yazımı 
         void Add(string key, object value, int duration);  // Duration Cache'de ne kadar duracağını belirtiyor 
+        void Add(string key, object data);
         bool IsAdd(string key); // Önbellek de böyle bir veri var mı yok ise Veritabanından al ve ekle 
         void Remove(string key); // Cache sil  Keyine göre 
         void RemoveByPattern(string pattern); // Cache'i Metod adına göre sil 
