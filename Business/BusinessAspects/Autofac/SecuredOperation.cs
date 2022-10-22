@@ -30,13 +30,12 @@ namespace Business.BusinessAspects.Autofac
         protected override void OnBefore(IInvocation invocation)
         {
             var userId = ClaimHelper.GetUserId(_httpContextAccessor.HttpContext);
-            Console.WriteLine("TEST", CacheKeys.UserIdForClaim, userId);
+
             if (_cacheManager.Get<IEnumerable<string>>($"{CacheKeys.UserIdForClaim}={userId}") == null)
             {
                 throw new SecuredOperationException(UserMessages.TokenExpired);
             }
-
-            var roleClaims = _cacheManager.Get<IEnumerable<String>>($"{CacheKeys.UserIdForClaim}={userId}").ToList();// O an ki kullanıcını Claimroles bul diyoruz 
+            var roleClaims = _cacheManager.Get<IEnumerable<string>>($"{CacheKeys.UserIdForClaim}={userId}").ToList();// O an ki kullanıcını Claimroles bul diyoruz 
             foreach (var role in _roles)
             {
                 if (roleClaims.Contains(role)) // Claimlerin içinde ilgili rol var ise 
@@ -44,7 +43,7 @@ namespace Business.BusinessAspects.Autofac
                     return; // Metodu çalıştırmaya devam et 
                 }
             }
-            throw new SecuredOperationException(UserMessages.AuthorizationDenied);// Eğer ki claimi yok ise hata ver 
+            throw new SecuredOperationException(UserMessages.AuthorizationDenied); // Eğer ki claimi yok ise hata ver 
         }
     }
 }

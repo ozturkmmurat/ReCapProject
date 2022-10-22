@@ -39,7 +39,7 @@ namespace Core.Utilities.Security.JWT
                 Token = token,
                 Expiration = _accessTokenExpiration,
                 RefreshToken = CreateRefreshToken(user, operationClaims),
-                RefreshTokenEndDate = _accessTokenExpiration.AddSeconds(25)
+                RefreshTokenEndDate = _accessTokenExpiration.AddSeconds(30)
             };
 
         }

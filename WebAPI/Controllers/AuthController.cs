@@ -49,7 +49,10 @@ namespace WebAPI.Controllers
             if (result.Success)
             {
                 var claims = _userService.GetClaims(userToLogin.Data);
-                _cacheManager.Add($"{CacheKeys.UserIdForClaim}={userToLogin.Data.Id}", claims.Data.Select(x => x.Name).ToString(), _tokenOptions.AccessTokenExpiration);
+                _cacheManager.Add($"{CacheKeys.UserIdForClaim}={userToLogin.Data.Id}", claims.Data.Select(x => x.Name), _tokenOptions.AccessTokenExpiration);
+
+                var oprClaims = _cacheManager.Get<IEnumerable<string>>($"{CacheKeys.UserIdForClaim}={userToLogin.Data.Id}").ToList();
+
                 var refreshToken = new UserRefreshTokenDto()
                 {
                     UserId = userToLogin.Data.Id,
@@ -74,6 +77,8 @@ namespace WebAPI.Controllers
                 {
                     var claims = _userService.GetClaims(user);
                     _cacheManager.Add($"{CacheKeys.UserIdForClaim}={user.Id}", claims.Data.Select(x => x.Name), _tokenOptions.AccessTokenExpiration);
+
+                   
 
                     var refreshTokenAdd = new UserRefreshTokenDto()
                     {

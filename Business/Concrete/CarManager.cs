@@ -54,14 +54,14 @@ namespace Business.Concrete
             _carDal.Delete(car);
             return new SuccessResult(Messages.DataDeleted);
         }
-        [CacheAspect]
+        //[CacheAspect]
         [SecuredOperation("user")]
         public IDataResult<List<Car>> GetAllCars()
         {
 
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(), Messages.GetByAll);
         }
-        [CacheAspect]
+        //[CacheAspect]
         public IDataResult<Car> GetById(int id)
         {
             var result = _carDal.Get(c => c.Id == id);
@@ -71,17 +71,17 @@ namespace Business.Concrete
             }
             return new ErrorDataResult<Car>(Messages.GetByAllDefault);
         }
-        [CacheAspect]
+       // [CacheAspect]
         public IDataResult<List<Car>> GetCarsByBrandId(int id)
         {
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.BrandId == id), Messages.GetByAll);
         }
-        [CacheAspect]
+      //  [CacheAspect]
         public IDataResult<List<Car>> GetCarsByColorId(int id)
         {
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.ColorId == id), Messages.GetByAll);
         }
-        [CacheAspect]
+       // [CacheAspect]
         public IDataResult<List<CarDetailDTO>> GetCarsDetailDTO()
         {
             return new SuccessDataResult<List<CarDetailDTO>>(_carDal.GetCarDetails(), Messages.GetByAll);

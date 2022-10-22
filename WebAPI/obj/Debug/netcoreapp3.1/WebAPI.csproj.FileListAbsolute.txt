@@ -298,3 +298,4 @@ D:\Murat Ozturk\Desktop\Projeler\ReCapProject\WebAPI\obj\Debug\netcoreapp3.1\Web
 D:\Murat Ozturk\Desktop\Projeler\ReCapProject\WebAPI\obj\Debug\netcoreapp3.1\WebAPI.dll
 D:\Murat Ozturk\Desktop\Projeler\ReCapProject\WebAPI\obj\Debug\netcoreapp3.1\WebAPI.pdb
 D:\Murat Ozturk\Desktop\Projeler\ReCapProject\WebAPI\obj\Debug\netcoreapp3.1\WebAPI.genruntimeconfig.cache
+D:\Murat Ozturk\Desktop\Projeler\ReCapProject\WebAPI\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Design.dll
