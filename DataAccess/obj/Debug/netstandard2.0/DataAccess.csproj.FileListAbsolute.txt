@@ -28,3 +28,18 @@ D:\Murat Ozturk\Desktop\Projeler\ReCapProject\DataAccess\obj\Debug\netstandard2.
 D:\Murat Ozturk\Desktop\Projeler\ReCapProject\DataAccess\obj\Debug\netstandard2.0\DataAccess.csproj.CopyComplete
 D:\Murat Ozturk\Desktop\Projeler\ReCapProject\DataAccess\obj\Debug\netstandard2.0\DataAccess.dll
 D:\Murat Ozturk\Desktop\Projeler\ReCapProject\DataAccess\obj\Debug\netstandard2.0\DataAccess.pdb
+C:\Users\murat\source\repos\ozturkmmurat\ReCapProject\DataAccess\bin\Debug\netstandard2.0\DataAccess.deps.json
+C:\Users\murat\source\repos\ozturkmmurat\ReCapProject\DataAccess\bin\Debug\netstandard2.0\DataAccess.dll
+C:\Users\murat\source\repos\ozturkmmurat\ReCapProject\DataAccess\bin\Debug\netstandard2.0\DataAccess.pdb
+C:\Users\murat\source\repos\ozturkmmurat\ReCapProject\DataAccess\bin\Debug\netstandard2.0\Core.dll
+C:\Users\murat\source\repos\ozturkmmurat\ReCapProject\DataAccess\bin\Debug\netstandard2.0\Entities.dll
+C:\Users\murat\source\repos\ozturkmmurat\ReCapProject\DataAccess\bin\Debug\netstandard2.0\Entities.pdb
+C:\Users\murat\source\repos\ozturkmmurat\ReCapProject\DataAccess\bin\Debug\netstandard2.0\Core.pdb
+C:\Users\murat\source\repos\ozturkmmurat\ReCapProject\DataAccess\obj\Debug\netstandard2.0\DataAccess.csproj.AssemblyReference.cache
+C:\Users\murat\source\repos\ozturkmmurat\ReCapProject\DataAccess\obj\Debug\netstandard2.0\DataAccess.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\murat\source\repos\ozturkmmurat\ReCapProject\DataAccess\obj\Debug\netstandard2.0\DataAccess.AssemblyInfoInputs.cache
+C:\Users\murat\source\repos\ozturkmmurat\ReCapProject\DataAccess\obj\Debug\netstandard2.0\DataAccess.AssemblyInfo.cs
+C:\Users\murat\source\repos\ozturkmmurat\ReCapProject\DataAccess\obj\Debug\netstandard2.0\DataAccess.csproj.CoreCompileInputs.cache
+C:\Users\murat\source\repos\ozturkmmurat\ReCapProject\DataAccess\obj\Debug\netstandard2.0\DataAccess.csproj.CopyComplete
+C:\Users\murat\source\repos\ozturkmmurat\ReCapProject\DataAccess\obj\Debug\netstandard2.0\DataAccess.dll
+C:\Users\murat\source\repos\ozturkmmurat\ReCapProject\DataAccess\obj\Debug\netstandard2.0\DataAccess.pdb

@@ -39,20 +39,22 @@ namespace Core.Utilities.Security.JWT
                 Token = token,
                 Expiration = _accessTokenExpiration,
                 RefreshToken = CreateRefreshToken(user, operationClaims),
-                RefreshTokenEndDate = _accessTokenExpiration.AddSeconds(30)
+                RefreshTokenEndDate = _accessTokenExpiration.AddSeconds(60)
             };
 
         }
 
         public string CreateRefreshToken(Entities.Concrete.User user, List<OperationClaim> operationClaims)
         {
-            byte[] number = new byte[32];
-            using (RandomNumberGenerator random = RandomNumberGenerator.Create())
+            string character = "0123456789ABCÇDEFGĞHIİJKLMNOÖPRSŞTUÜVYZabcçdefgğhıijklmnoöprsştuüvyz=";
+            Random rnd = new Random();
+            string refreshToken = "";
+            for (int i = 0; i < 40; i++)
             {
-                random.GetBytes(number);
-                return Convert.ToBase64String(number);
+                refreshToken += character[rnd.Next(character.Length)];
             }
-           
+            return (refreshToken);
+
         }
 
         public JwtSecurityToken CreateJwtSecurityToken(TokenOptions tokenOptions, Entities.Concrete.User user,
