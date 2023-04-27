@@ -4,6 +4,7 @@ using FluentValidation.Results;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
@@ -37,6 +38,7 @@ namespace Core.Extensions
             httpContext.Response.ContentType = "application/json";
             httpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
 
+
             string message = e.Message;
             IEnumerable<ValidationFailure> errors;
 
@@ -58,6 +60,7 @@ namespace Core.Extensions
 
             if (e.GetType() == typeof(SecuredOperationException))
             {
+
                 if (e.Message == UserMessages.AuthorizationDenied)
                 {
                     message = e.Message;
@@ -80,7 +83,6 @@ namespace Core.Extensions
                 }.ToString());
             }
 
-
             return httpContext.Response.WriteAsync(new ErrorDetails
             {
                 StatusCode = httpContext.Response.StatusCode,
@@ -88,4 +90,5 @@ namespace Core.Extensions
             }.ToString());
         }
     }
+   
 }

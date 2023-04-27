@@ -67,7 +67,10 @@ namespace Core.Aspects.Autofac.Logging
             if (_httpContextAccessor.HttpContext != null && _httpContextAccessor.HttpContext.User.Claims.Count() > 0)
             {
                 logDetail.User = ClaimHelper.GetUserName(_httpContextAccessor.HttpContext);
-                logDetail.CustomerId = ClaimHelper.GetCustomerId(_httpContextAccessor.HttpContext);
+                if (logDetail.CustomerId !=0 && logDetail.CustomerId != null)
+                {
+                    logDetail.CustomerId = ClaimHelper.GetCustomerId(_httpContextAccessor.HttpContext);
+                }
             }
             else
             {

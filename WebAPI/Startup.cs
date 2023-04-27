@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Business.Abstract;
 using Business.Concrete;
+using Core.CrossCuttingConcerns.Logging.Serilog.Loggers;
 using Core.DependencyResolvers;
 using Core.Extensions;
 using Core.Utilities.IoC;
@@ -69,6 +70,8 @@ namespace WebAPI
                         IssuerSigningKey = SecurityKeyHelper.CreateSecurityKey(tokenOptions.SecurityKey),
                     };
                 });
+            services.AddTransient<FileLogger>();
+
             services.AddDependencyResolvers(new ICoreModule[] {
              new CoreModule()
             }); ;
