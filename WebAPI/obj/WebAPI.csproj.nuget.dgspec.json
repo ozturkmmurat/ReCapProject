@@ -1,24 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Murat Ozturk\\Desktop\\Projeler\\RecapProjectYeni\\ReCapProject\\WebAPI\\WebAPI.csproj": {}
+    "C:\\Users\\Murat.Ozturk\\Desktop\\Projeler\\RecapProjectYeni\\ReCapProject\\WebAPI\\WebAPI.csproj": {}
   },
   "projects": {
-    "D:\\Murat Ozturk\\Desktop\\Projeler\\RecapProjectYeni\\ReCapProject\\Business\\Business.csproj": {
+    "C:\\Users\\Murat.Ozturk\\Desktop\\Projeler\\RecapProjectYeni\\ReCapProject\\Business\\Business.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Murat Ozturk\\Desktop\\Projeler\\RecapProjectYeni\\ReCapProject\\Business\\Business.csproj",
+        "projectUniqueName": "C:\\Users\\Murat.Ozturk\\Desktop\\Projeler\\RecapProjectYeni\\ReCapProject\\Business\\Business.csproj",
         "projectName": "Business",
-        "projectPath": "D:\\Murat Ozturk\\Desktop\\Projeler\\RecapProjectYeni\\ReCapProject\\Business\\Business.csproj",
-        "packagesPath": "C:\\Users\\murat.ozturk\\.nuget\\packages\\",
-        "outputPath": "D:\\Murat Ozturk\\Desktop\\Projeler\\RecapProjectYeni\\ReCapProject\\Business\\obj\\",
+        "projectPath": "C:\\Users\\Murat.Ozturk\\Desktop\\Projeler\\RecapProjectYeni\\ReCapProject\\Business\\Business.csproj",
+        "packagesPath": "C:\\Users\\Murat.Ozturk\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Murat.Ozturk\\Desktop\\Projeler\\RecapProjectYeni\\ReCapProject\\Business\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\murat.ozturk\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Murat.Ozturk\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -33,11 +32,11 @@
           "netstandard2.0": {
             "targetAlias": "netstandard2.0",
             "projectReferences": {
-              "D:\\Murat Ozturk\\Desktop\\Projeler\\RecapProjectYeni\\ReCapProject\\DataAccess\\DataAccess.csproj": {
-                "projectPath": "D:\\Murat Ozturk\\Desktop\\Projeler\\RecapProjectYeni\\ReCapProject\\DataAccess\\DataAccess.csproj"
+              "C:\\Users\\Murat.Ozturk\\Desktop\\Projeler\\RecapProjectYeni\\ReCapProject\\DataAccess\\DataAccess.csproj": {
+                "projectPath": "C:\\Users\\Murat.Ozturk\\Desktop\\Projeler\\RecapProjectYeni\\ReCapProject\\DataAccess\\DataAccess.csproj"
               },
-              "D:\\Murat Ozturk\\Desktop\\Projeler\\RecapProjectYeni\\ReCapProject\\Entities\\Entities.csproj": {
-                "projectPath": "D:\\Murat Ozturk\\Desktop\\Projeler\\RecapProjectYeni\\ReCapProject\\Entities\\Entities.csproj"
+              "C:\\Users\\Murat.Ozturk\\Desktop\\Projeler\\RecapProjectYeni\\ReCapProject\\Entities\\Entities.csproj": {
+                "projectPath": "C:\\Users\\Murat.Ozturk\\Desktop\\Projeler\\RecapProjectYeni\\ReCapProject\\Entities\\Entities.csproj"
               }
             }
           }
@@ -93,29 +92,29 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.404\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Murat Ozturk\\Desktop\\Projeler\\RecapProjectYeni\\ReCapProject\\Core\\Core.csproj": {
+    "C:\\Users\\Murat.Ozturk\\Desktop\\Projeler\\RecapProjectYeni\\ReCapProject\\Core\\Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Murat Ozturk\\Desktop\\Projeler\\RecapProjectYeni\\ReCapProject\\Core\\Core.csproj",
+        "projectUniqueName": "C:\\Users\\Murat.Ozturk\\Desktop\\Projeler\\RecapProjectYeni\\ReCapProject\\Core\\Core.csproj",
         "projectName": "Core",
-        "projectPath": "D:\\Murat Ozturk\\Desktop\\Projeler\\RecapProjectYeni\\ReCapProject\\Core\\Core.csproj",
-        "packagesPath": "C:\\Users\\murat.ozturk\\.nuget\\packages\\",
-        "outputPath": "D:\\Murat Ozturk\\Desktop\\Projeler\\RecapProjectYeni\\ReCapProject\\Core\\obj\\",
+        "projectPath": "C:\\Users\\Murat.Ozturk\\Desktop\\Projeler\\RecapProjectYeni\\ReCapProject\\Core\\Core.csproj",
+        "packagesPath": "C:\\Users\\Murat.Ozturk\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Murat.Ozturk\\Desktop\\Projeler\\RecapProjectYeni\\ReCapProject\\Core\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\murat.ozturk\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Murat.Ozturk\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -211,29 +210,29 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.404\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Murat Ozturk\\Desktop\\Projeler\\RecapProjectYeni\\ReCapProject\\DataAccess\\DataAccess.csproj": {
+    "C:\\Users\\Murat.Ozturk\\Desktop\\Projeler\\RecapProjectYeni\\ReCapProject\\DataAccess\\DataAccess.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Murat Ozturk\\Desktop\\Projeler\\RecapProjectYeni\\ReCapProject\\DataAccess\\DataAccess.csproj",
+        "projectUniqueName": "C:\\Users\\Murat.Ozturk\\Desktop\\Projeler\\RecapProjectYeni\\ReCapProject\\DataAccess\\DataAccess.csproj",
         "projectName": "DataAccess",
-        "projectPath": "D:\\Murat Ozturk\\Desktop\\Projeler\\RecapProjectYeni\\ReCapProject\\DataAccess\\DataAccess.csproj",
-        "packagesPath": "C:\\Users\\murat.ozturk\\.nuget\\packages\\",
-        "outputPath": "D:\\Murat Ozturk\\Desktop\\Projeler\\RecapProjectYeni\\ReCapProject\\DataAccess\\obj\\",
+        "projectPath": "C:\\Users\\Murat.Ozturk\\Desktop\\Projeler\\RecapProjectYeni\\ReCapProject\\DataAccess\\DataAccess.csproj",
+        "packagesPath": "C:\\Users\\Murat.Ozturk\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Murat.Ozturk\\Desktop\\Projeler\\RecapProjectYeni\\ReCapProject\\DataAccess\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\murat.ozturk\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Murat.Ozturk\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -248,8 +247,8 @@
           "netstandard2.0": {
             "targetAlias": "netstandard2.0",
             "projectReferences": {
-              "D:\\Murat Ozturk\\Desktop\\Projeler\\RecapProjectYeni\\ReCapProject\\Entities\\Entities.csproj": {
-                "projectPath": "D:\\Murat Ozturk\\Desktop\\Projeler\\RecapProjectYeni\\ReCapProject\\Entities\\Entities.csproj"
+              "C:\\Users\\Murat.Ozturk\\Desktop\\Projeler\\RecapProjectYeni\\ReCapProject\\Entities\\Entities.csproj": {
+                "projectPath": "C:\\Users\\Murat.Ozturk\\Desktop\\Projeler\\RecapProjectYeni\\ReCapProject\\Entities\\Entities.csproj"
               }
             }
           }
@@ -287,29 +286,29 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.404\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Murat Ozturk\\Desktop\\Projeler\\RecapProjectYeni\\ReCapProject\\Entities\\Entities.csproj": {
+    "C:\\Users\\Murat.Ozturk\\Desktop\\Projeler\\RecapProjectYeni\\ReCapProject\\Entities\\Entities.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Murat Ozturk\\Desktop\\Projeler\\RecapProjectYeni\\ReCapProject\\Entities\\Entities.csproj",
+        "projectUniqueName": "C:\\Users\\Murat.Ozturk\\Desktop\\Projeler\\RecapProjectYeni\\ReCapProject\\Entities\\Entities.csproj",
         "projectName": "Entities",
-        "projectPath": "D:\\Murat Ozturk\\Desktop\\Projeler\\RecapProjectYeni\\ReCapProject\\Entities\\Entities.csproj",
-        "packagesPath": "C:\\Users\\murat.ozturk\\.nuget\\packages\\",
-        "outputPath": "D:\\Murat Ozturk\\Desktop\\Projeler\\RecapProjectYeni\\ReCapProject\\Entities\\obj\\",
+        "projectPath": "C:\\Users\\Murat.Ozturk\\Desktop\\Projeler\\RecapProjectYeni\\ReCapProject\\Entities\\Entities.csproj",
+        "packagesPath": "C:\\Users\\Murat.Ozturk\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Murat.Ozturk\\Desktop\\Projeler\\RecapProjectYeni\\ReCapProject\\Entities\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\murat.ozturk\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Murat.Ozturk\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -324,8 +323,8 @@
           "netstandard2.0": {
             "targetAlias": "netstandard2.0",
             "projectReferences": {
-              "D:\\Murat Ozturk\\Desktop\\Projeler\\RecapProjectYeni\\ReCapProject\\Core\\Core.csproj": {
-                "projectPath": "D:\\Murat Ozturk\\Desktop\\Projeler\\RecapProjectYeni\\ReCapProject\\Core\\Core.csproj"
+              "C:\\Users\\Murat.Ozturk\\Desktop\\Projeler\\RecapProjectYeni\\ReCapProject\\Core\\Core.csproj": {
+                "projectPath": "C:\\Users\\Murat.Ozturk\\Desktop\\Projeler\\RecapProjectYeni\\ReCapProject\\Core\\Core.csproj"
               }
             }
           }
@@ -353,29 +352,29 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.404\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Murat Ozturk\\Desktop\\Projeler\\RecapProjectYeni\\ReCapProject\\WebAPI\\WebAPI.csproj": {
+    "C:\\Users\\Murat.Ozturk\\Desktop\\Projeler\\RecapProjectYeni\\ReCapProject\\WebAPI\\WebAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Murat Ozturk\\Desktop\\Projeler\\RecapProjectYeni\\ReCapProject\\WebAPI\\WebAPI.csproj",
+        "projectUniqueName": "C:\\Users\\Murat.Ozturk\\Desktop\\Projeler\\RecapProjectYeni\\ReCapProject\\WebAPI\\WebAPI.csproj",
         "projectName": "WebAPI",
-        "projectPath": "D:\\Murat Ozturk\\Desktop\\Projeler\\RecapProjectYeni\\ReCapProject\\WebAPI\\WebAPI.csproj",
-        "packagesPath": "C:\\Users\\murat.ozturk\\.nuget\\packages\\",
-        "outputPath": "D:\\Murat Ozturk\\Desktop\\Projeler\\RecapProjectYeni\\ReCapProject\\WebAPI\\obj\\",
+        "projectPath": "C:\\Users\\Murat.Ozturk\\Desktop\\Projeler\\RecapProjectYeni\\ReCapProject\\WebAPI\\WebAPI.csproj",
+        "packagesPath": "C:\\Users\\Murat.Ozturk\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Murat.Ozturk\\Desktop\\Projeler\\RecapProjectYeni\\ReCapProject\\WebAPI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\murat.ozturk\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Murat.Ozturk\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -384,14 +383,15 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\sdk\\7.0.304\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "D:\\Murat Ozturk\\Desktop\\Projeler\\RecapProjectYeni\\ReCapProject\\Business\\Business.csproj": {
-                "projectPath": "D:\\Murat Ozturk\\Desktop\\Projeler\\RecapProjectYeni\\ReCapProject\\Business\\Business.csproj"
+              "C:\\Users\\Murat.Ozturk\\Desktop\\Projeler\\RecapProjectYeni\\ReCapProject\\Business\\Business.csproj": {
+                "projectPath": "C:\\Users\\Murat.Ozturk\\Desktop\\Projeler\\RecapProjectYeni\\ReCapProject\\Business\\Business.csproj"
               }
             }
           }
@@ -431,7 +431,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -443,7 +444,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.404\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
         }
       }
     }

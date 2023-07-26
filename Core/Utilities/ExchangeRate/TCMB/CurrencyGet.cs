@@ -9,37 +9,20 @@ namespace Core.Utilities.ExchangeRate.CurrencyGet
     public static class CurrencyGet
     {
 
-        public static decimal GetUSD()
+        public static decimal ForexBuyingCurrencyGet(string currencyName)
         {
             try
             {
                 string today = "https://www.tcmb.gov.tr/kurlar/today.xml";
                 var xmlDoc = new XmlDocument();
                 xmlDoc.Load(today);
-                string USD = xmlDoc.SelectSingleNode("Tarih_Date/Currency[@Kod='USD']/ForexBuying").InnerXml.Replace('.', ',');
-                decimal USDd = Math.Round(decimal.Parse(USD), 2);
-                return USDd;
+                string currency = xmlDoc.SelectSingleNode($"Tarih_Date/Currency[@Kod='{currencyName.ToUpper()}']/ForexBuying").InnerXml.Replace('.', ',');
+                decimal currencyd = Math.Round(decimal.Parse(currency), 2);
+                return currencyd;
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                return 0;
-            }
-        }
-
-        public static decimal GetEUR()
-        {
-            try
-            {
-                string today = "https://www.tcmb.gov.tr/kurlar/today.xml";
-                var xmlDoc = new XmlDocument();
-                xmlDoc.Load(today);
-                string EUR = xmlDoc.SelectSingleNode("Tarih_Date/Currency[@Kod='EUR']/ForexBuying").InnerXml.Replace('.', ',');
-                decimal EURd = Math.Round(decimal.Parse(EUR), 2);
-                return EURd;
-            }
-            catch (Exception)
-            {
-                return 0;
+                 throw new Exception("Kur bilgisini çekerken bir sorun oluştu. " + e.Message);
             }
         }
     }

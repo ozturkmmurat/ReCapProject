@@ -1,5 +1,6 @@
 ﻿using Business.Concrete;
 using Core.Entities.Concrete;
+using Core.Utilities.ExchangeRate.CurrencyGet;
 using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
@@ -42,12 +43,14 @@ namespace ConsoleUI
             //        " -- Araç Günlük Ücreti = " + item.DailyPrice);
             //}
 
-            UserManager user = new UserManager(new EfUserDal());
+            var y =  GetCurrency();
+            Console.WriteLine(y);
+            //UserManager user = new UserManager(new EfUserDal());
             
-            var result =  user.Add(new User 
-            {  Email = "mrt.fb.1999@hotmail.com" });
+            //var result =  user.Add(new User 
+            //{  Email = "mrt.fb.1999@hotmail.com" });
 
-            Console.WriteLine(result.Message);
+            //Console.WriteLine(result.Message);
 
         }
 
@@ -77,6 +80,12 @@ namespace ConsoleUI
             BrandManager brandManager = new BrandManager(new EfBrandDal());
             brandManager.Add(new Brand { Name = "Citroen" });
             return brandManager;
+        }
+
+        private static decimal GetCurrency()
+        {
+            var x =  CurrencyGet.ForexBuyingCurrencyGet("EUR");
+            return x;
         }
     }
 }
